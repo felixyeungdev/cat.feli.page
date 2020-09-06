@@ -10,6 +10,30 @@ let model, webcam, maxPredictions;
 
 let screens = ["welcome", "camera-picker", "ml"];
 
+async function getCamera() {
+    return new Promise((resolve, reject) => {
+        if (navigator.getUserMedia) {
+            navigator.getUserMedia(
+                { audio: false, video: { width: 1280, height: 720 } },
+                function (stream) {
+                    resolve(stream);
+                },
+                function (err) {
+                    reject("The following error occurred: " + err.name);
+                }
+            );
+        } else {
+            reject("getUserMedia not supported");
+        }
+    });
+}
+
+async function closeCamera(stream) {
+    stream.getTracks().forEach(function (track) {
+        track.stop();
+    });
+}
+
 function loadVersion() {
     document.querySelector(
         "#version"
@@ -77,8 +101,9 @@ async function predict() {
 }
 
 async function chooseCamera() {
-    let webcam = new tmImage.Webcam(200, 200, false);
-    await webcam.setup();
+    let tempStream = await getCamera();
+    closeCamera(tempStream);
+
     showScreen("camera-picker");
     camerasSelect.innerHTML = "";
     var devices = await navigator.mediaDevices.enumerateDevices();
