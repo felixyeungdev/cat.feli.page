@@ -6,6 +6,9 @@ const resultElement = document.querySelector("#result");
 const camerasSelect = document.querySelector("#cameras");
 const version = "v1.1";
 
+navigator.getUserMedia =
+    navigator.getUserMedia || navigator.mediaDevices.getUserMedia;
+
 let model, webcam, maxPredictions;
 
 let screens = ["welcome", "camera-picker", "ml"];
