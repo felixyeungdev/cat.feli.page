@@ -111,8 +111,8 @@ async function predict() {
 }
 
 async function chooseCamera() {
-    let tempStream = await getCamera();
-    closeCamera(tempStream);
+    // let tempStream = await getCamera();
+    // closeCamera(tempStream);
 
     showScreen("camera-picker");
     camerasSelect.innerHTML = "";
