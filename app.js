@@ -2,7 +2,7 @@ const MODEL_URL = "./assets/models/cats/";
 const webCamContainer = document.querySelector("#webcam");
 const startButton = document.querySelector("#start");
 const goButton = document.querySelector("#go");
-const testPre = document.querySelector("#test");
+const resultElement = document.querySelector("#result");
 const camerasSelect = document.querySelector("#cameras");
 const version = "v1.0";
 
@@ -36,7 +36,8 @@ async function init(deviceId) {
     webcam = new tmImage.Webcam(200, 200, flip);
     await webcam.setup({ deviceId });
     await webcam.play();
-    window.requestAnimationFrame(loop);
+    // window.requestAnimationFrame(loop);
+    setInterval(loop, 200);
 
     webCamContainer.appendChild(webcam.canvas);
 }
@@ -44,12 +45,26 @@ async function init(deviceId) {
 async function loop() {
     webcam.update();
     await predict();
-    window.requestAnimationFrame(loop);
+    // window.requestAnimationFrame(loop);
 }
 
 async function predict() {
     const prediction = await model.predict(webcam.canvas);
-    testPre.textContent = JSON.stringify(prediction, null, 4);
+    var sorted = prediction.sort((a, b) => {
+        if (a.probability > b.probability) {
+            return -1;
+        }
+        if (a.probability < b.probability) {
+            return 1;
+        }
+        return 0;
+    });
+
+    var top = sorted[0];
+
+    resultElement.innerHTML = `I am <span>${(top.probability * 100).toFixed(
+        0
+    )}</span>% sure that's ${top.className}`;
     // for (let i = 0; i < maxPredictions; i++) {
     //     const classPrediction =
     //         prediction[i].className +
@@ -60,8 +75,8 @@ async function predict() {
 }
 
 async function chooseCamera() {
-    let webcam = new tmImage.Webcam(200, 200, flip);
-    await webcam.setup({ deviceId });
+    let webcam = new tmImage.Webcam(200, 200, false);
+    await webcam.setup();
     showScreen("camera-picker");
     camerasSelect.innerHTML = "";
     var devices = await navigator.mediaDevices.enumerateDevices();

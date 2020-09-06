@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code&display=swap");
 
 * {
     margin: 0;
@@ -37,6 +38,19 @@ button:active {
     background-color: #ffffff;
 }
 
+select {
+    cursor: pointer;
+    border: none;
+    background-color: #f0f8ff;
+    margin: 16px;
+    padding: 12px 18px;
+    font-size: 18px;
+    border-radius: 100px;
+    border: 2px solid #bcbcbc;
+    outline: none;
+    transition: background-color 250ms ease-in-out;
+}
+
 section {
     width: 100vw;
     height: 100vh;
@@ -57,4 +71,15 @@ section.show {
     position: fixed;
     top: 8px;
     left: 8px;
+}
+
+#webcam {
+    border-radius: 16px;
+}
+
+#result {
+    margin-top: 16px;
+    span {
+        font-family: "Fira Code", monospace;
+    }
 }
