@@ -4,7 +4,7 @@ const startButton = document.querySelector("#start");
 const goButton = document.querySelector("#go");
 const resultElement = document.querySelector("#result");
 const camerasSelect = document.querySelector("#cameras");
-const version = "v1.1.2";
+const version = "v1.1.3";
 
 let model, webcam, maxPredictions, mobilenetModel;
 
