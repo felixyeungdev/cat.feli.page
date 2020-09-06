@@ -52,3 +52,9 @@ section {
 section.show {
     display: grid;
 }
+
+#version {
+    position: fixed;
+    top: 8px;
+    left: 8px;
+}

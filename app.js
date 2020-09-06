@@ -4,10 +4,16 @@ const startButton = document.querySelector("#start");
 const goButton = document.querySelector("#go");
 const testPre = document.querySelector("#test");
 const camerasSelect = document.querySelector("#cameras");
+const version = "v1.0";
 
 let model, webcam, maxPredictions;
 
 let screens = ["welcome", "camera-picker", "ml"];
+
+function loadVersion() {
+    document.querySelector("#version").textContent = version;
+}
+loadVersion();
 
 async function showScreen(screenId) {
     document.querySelector(`#${screenId}`).classList.add("show");
