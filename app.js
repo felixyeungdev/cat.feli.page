@@ -11,7 +11,9 @@ let model, webcam, maxPredictions;
 let screens = ["welcome", "camera-picker", "ml"];
 
 function loadVersion() {
-    document.querySelector("#version").textContent = version;
+    document.querySelector(
+        "#version"
+    ).innerHTML = `cat.feli.page<br/>${version}`;
 }
 loadVersion();
 
