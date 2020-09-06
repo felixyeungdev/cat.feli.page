@@ -28,9 +28,7 @@ async function init(deviceId) {
 
     const flip = true;
     webcam = new tmImage.Webcam(200, 200, flip);
-    console.log("start webcam.setup();");
     await webcam.setup({ deviceId });
-    console.log("done webcam.setup();");
     await webcam.play();
     window.requestAnimationFrame(loop);
 
@@ -56,6 +54,8 @@ async function predict() {
 }
 
 async function chooseCamera() {
+    let webcam = new tmImage.Webcam(200, 200, flip);
+    await webcam.setup({ deviceId });
     showScreen("camera-picker");
     camerasSelect.innerHTML = "";
     var devices = await navigator.mediaDevices.enumerateDevices();
