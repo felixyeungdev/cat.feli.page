@@ -1,11 +1,25 @@
 const MODEL_URL = "./assets/models/cats/";
 const webCamContainer = document.querySelector("#webcam");
 const startButton = document.querySelector("#start");
+const goButton = document.querySelector("#go");
 const testPre = document.querySelector("#test");
+const camerasSelect = document.querySelector("#cameras");
 
 let model, webcam, maxPredictions;
 
-async function init() {
+let screens = ["welcome", "camera-picker", "ml"];
+
+async function showScreen(screenId) {
+    document.querySelector(`#${screenId}`).classList.add("show");
+    let filteredScreens = [...screens].filter((screen) => screen != screenId);
+    filteredScreens.forEach((screen) =>
+        document.querySelector(`#${screen}`).classList.remove("show")
+    );
+}
+
+async function init(deviceId) {
+    showScreen("ml");
+
     const modelURL = MODEL_URL + "model.json";
     const metadataURL = MODEL_URL + "metadata.json";
 
@@ -15,7 +29,7 @@ async function init() {
     const flip = true;
     webcam = new tmImage.Webcam(200, 200, flip);
     console.log("start webcam.setup();");
-    await webcam.setup();
+    await webcam.setup({ deviceId });
     console.log("done webcam.setup();");
     await webcam.play();
     window.requestAnimationFrame(loop);
@@ -41,4 +55,23 @@ async function predict() {
     // }
 }
 
-startButton.addEventListener("click", init);
+async function chooseCamera() {
+    showScreen("camera-picker");
+    camerasSelect.innerHTML = "";
+    var devices = await navigator.mediaDevices.enumerateDevices();
+    var videoInputs = devices.filter((device) => device.kind == "videoinput");
+
+    videoInputs.forEach((device) => {
+        let option = document.createElement("option");
+        option.value = device.deviceId;
+        option.textContent = device.label;
+        camerasSelect.append(option);
+    });
+
+    goButton.addEventListener("click", (e) => {
+        if (camerasSelect.value && camerasSelect.value != "")
+            init(camerasSelect.value);
+    });
+}
+
+startButton.addEventListener("click", chooseCamera);

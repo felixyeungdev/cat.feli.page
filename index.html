@@ -7,18 +7,28 @@
         <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
         <script src="app.js" defer></script>
+        <link rel="stylesheet" href="styles.css" />
     </head>
     <body>
-        <section id="welcome">
+        <section id="welcome" class="show">
             <div class="wrapper">
                 <h1>Welcome To Which Cat is Dis</h1>
                 <h3>An A.I. will identify which cat is this</h3>
                 <button id="start">Start Now!</button>
             </div>
         </section>
+        <section id="camera-picker">
+            <div class="wrapper">
+                <h2>Choose a camera</h2>
+                <select name="cameras" id="cameras"></select>
+                <button id="go">Start Identifying</button>
+            </div>
+        </section>
         <section id="ml">
-            <div id="webcam"></div>
-            <pre id="test"></pre>
+            <div class="wrapper">
+                <div id="webcam"></div>
+                <pre id="test"></pre>
+            </div>
         </section>
     </body>
 </html>

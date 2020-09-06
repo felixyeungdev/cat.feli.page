@@ -1,0 +1,59 @@
+@import url("https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 16px;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background-color: #f0f8ff;
+  margin: 16px;
+  padding: 12px 18px;
+  font-size: 18px;
+  border-radius: 100px;
+  border: 2px solid #bcbcbc;
+  outline: none;
+  -webkit-transition: background-color 250ms ease-in-out;
+  transition: background-color 250ms ease-in-out;
+}
+
+button:hover {
+  background-color: #d7ecff;
+}
+
+button:active {
+  background-color: #ffffff;
+}
+
+section {
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  place-items: center;
+}
+
+section .wrapper {
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  width: 100%;
+}
+
+section.show {
+  display: -ms-grid;
+  display: grid;
+}
+/*# sourceMappingURL=styles.css.map */
