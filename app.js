@@ -6,7 +6,7 @@ const resultElement = document.querySelector("#result");
 const camerasSelect = document.querySelector("#cameras");
 const version = "v1.1.1";
 
-let model, webcam, maxPredictions;
+let model, webcam, maxPredictions, mobilenetModel;
 
 let screens = ["welcome", "camera-picker", "ml"];
 
@@ -60,6 +60,8 @@ async function showScreen(screenId) {
 }
 
 async function init(deviceId) {
+    mobilenetModel = await mobilenet.load();
+
     showScreen("ml");
 
     const modelURL = MODEL_URL + "model.json";
@@ -85,6 +87,18 @@ async function loop() {
 }
 
 async function predict() {
+    var mobilenetClassify = await mobilenetModel.classify(webcam.canvas);
+
+    var isCat =
+        mobilenetClassify.filter((e) =>
+            e.className.toLowerCase().includes("cat")
+        ).length > 0;
+
+    if (!isCat) {
+        resultElement.textContent = "Doesn't look like a cat..";
+        return;
+    }
+
     const prediction = await model.predict(webcam.canvas);
     var sorted = prediction.sort((a, b) => {
         if (a.probability > b.probability) {
