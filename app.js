@@ -34,7 +34,7 @@ async function init(deviceId) {
     model = await tmImage.load(modelURL, metadataURL);
     maxPredictions = model.getTotalClasses();
 
-    const flip = true;
+    const flip = false;
     webcam = new tmImage.Webcam(200, 200, flip);
     await webcam.setup({ deviceId });
     await webcam.play();
