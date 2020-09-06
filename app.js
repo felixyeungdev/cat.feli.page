@@ -4,10 +4,7 @@ const startButton = document.querySelector("#start");
 const goButton = document.querySelector("#go");
 const resultElement = document.querySelector("#result");
 const camerasSelect = document.querySelector("#cameras");
-const version = "v1.1";
-
-navigator.getUserMedia =
-    navigator.getUserMedia || navigator.mediaDevices.getUserMedia;
+const version = "v1.1.0";
 
 let model, webcam, maxPredictions;
 
@@ -15,7 +12,17 @@ let screens = ["welcome", "camera-picker", "ml"];
 
 async function getCamera() {
     return new Promise((resolve, reject) => {
-        if (navigator.getUserMedia) {
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            navigator.mediaDevices.getUserMedia(
+                { audio: false, video: { width: 1280, height: 720 } },
+                function (stream) {
+                    resolve(stream);
+                },
+                function (err) {
+                    reject("The following error occurred: " + err.name);
+                }
+            );
+        } else if (navigator.getUserMedia) {
             navigator.getUserMedia(
                 { audio: false, video: { width: 1280, height: 720 } },
                 function (stream) {
