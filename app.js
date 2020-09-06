@@ -141,8 +141,8 @@ async function chooseCamera() {
     });
 
     goButton.addEventListener("click", (e) => {
-        if (camerasSelect.value && camerasSelect.value != "")
-            init(camerasSelect.value);
+        // if (camerasSelect.value && camerasSelect.value != "")
+        init(camerasSelect.value);
     });
 }
 
