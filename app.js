@@ -71,7 +71,6 @@ async function init(deviceId, useCamera = true) {
     const metadataURL = MODEL_URL + "metadata.json";
 
     if (!model) model = await tmImage.load(modelURL, metadataURL);
-    resultElement.innerHTML = "Identifying...";
 
     // maxPredictions = model.getTotalClasses();
 
@@ -86,6 +85,7 @@ async function init(deviceId, useCamera = true) {
         webCamContainer.innerHTML = "";
         webCamContainer.appendChild(webcam.canvas);
     }
+    resultElement.innerHTML = "Identifying...";
 }
 
 async function loop() {
