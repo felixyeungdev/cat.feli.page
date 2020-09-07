@@ -67,11 +67,6 @@ section .wrapper {
   width: 100%;
 }
 
-section.show {
-  display: -ms-grid;
-  display: grid;
-}
-
 #version {
   position: fixed;
   top: 8px;
@@ -82,11 +77,52 @@ section.show {
   border-radius: 16px;
 }
 
+#webcam img {
+  width: 200px;
+  height: 200px;
+  border-radius: 32px;
+}
+
 #result {
   margin-top: 16px;
 }
 
 #result span {
   font-family: "Fira Code", monospace;
+}
+
+#camera-picker {
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+}
+
+@media screen and (max-width: 600px) {
+  #camera-picker {
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+    -ms-grid-rows: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+  }
+}
+
+#camera-picker .wrapper .images {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  -ms-grid-rows: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+}
+
+#camera-picker .wrapper .images img {
+  width: 64px;
+  height: 64px;
+  border-radius: 8px;
+  margin: 8px;
+}
+
+body section.show {
+  display: -ms-grid;
+  display: grid;
 }
 /*# sourceMappingURL=styles.css.map */

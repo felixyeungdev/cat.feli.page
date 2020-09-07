@@ -63,10 +63,6 @@ section {
     }
 }
 
-section.show {
-    display: grid;
-}
-
 #version {
     position: fixed;
     top: 8px;
@@ -75,6 +71,11 @@ section.show {
 
 #webcam {
     border-radius: 16px;
+    img {
+        width: 200px;
+        height: 200px;
+        border-radius: 32px;
+    }
 }
 
 #result {
@@ -82,4 +83,30 @@ section.show {
     span {
         font-family: "Fira Code", monospace;
     }
+}
+
+#camera-picker {
+    grid-template-columns: 1fr 1fr;
+    @media screen and (max-width: 600px) {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+    .wrapper {
+        .images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+
+            img {
+                width: 64px;
+                height: 64px;
+                border-radius: 8px;
+                margin: 8px;
+            }
+        }
+    }
+}
+
+body section.show {
+    display: grid;
 }

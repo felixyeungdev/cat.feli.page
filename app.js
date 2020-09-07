@@ -4,7 +4,7 @@ const startButton = document.querySelector("#start");
 const goButton = document.querySelector("#go");
 const resultElement = document.querySelector("#result");
 const camerasSelect = document.querySelector("#cameras");
-const version = "v1.1.5";
+const version = "v1.1.6";
 
 let model, webcam, maxPredictions, mobilenetModel;
 
@@ -59,7 +59,7 @@ async function showScreen(screenId) {
     );
 }
 
-async function init(deviceId) {
+async function init(deviceId, useCamera = true) {
     mobilenetModel = await mobilenet.load();
 
     showScreen("ml");
@@ -70,14 +70,16 @@ async function init(deviceId) {
     model = await tmImage.load(modelURL, metadataURL);
     maxPredictions = model.getTotalClasses();
 
-    const flip = false;
-    webcam = new tmImage.Webcam(200, 200, flip);
-    await webcam.setup({ deviceId });
-    await webcam.play();
-    // window.requestAnimationFrame(loop);
-    setInterval(loop, 200);
+    if (useCamera) {
+        const flip = false;
+        webcam = new tmImage.Webcam(200, 200, flip);
+        await webcam.setup({ deviceId });
+        await webcam.play();
+        // window.requestAnimationFrame(loop);
+        setInterval(loop, 200);
 
-    webCamContainer.appendChild(webcam.canvas);
+        webCamContainer.appendChild(webcam.canvas);
+    }
 }
 
 async function loop() {
@@ -86,8 +88,10 @@ async function loop() {
     // window.requestAnimationFrame(loop);
 }
 
-async function predict() {
-    var mobilenetClassify = await mobilenetModel.classify(webcam.canvas);
+async function predict(element) {
+    var mobilenetClassify = await mobilenetModel.classify(
+        webcam ? webcam.canvas : element
+    );
 
     var isCat =
         mobilenetClassify.filter((e) =>
@@ -95,11 +99,11 @@ async function predict() {
         ).length > 0;
 
     if (!isCat) {
-        resultElement.textContent = "Doesn't look like a cat..";
+        resultElement.textContent = `That looks like more of a ${mobilenetClassify[0].className}`;
         return;
     }
 
-    const prediction = await model.predict(webcam.canvas);
+    const prediction = await model.predict(webcam ? webcam.canvas : element);
     var sorted = prediction.sort((a, b) => {
         if (a.probability > b.probability) {
             return -1;
@@ -147,3 +151,12 @@ async function chooseCamera() {
 }
 
 startButton.addEventListener("click", chooseCamera);
+
+document.querySelectorAll("img").forEach((image) => {
+    image.addEventListener("click", async () => {
+        webCamContainer.append(image);
+        showScreen("ml");
+        await init(null, false);
+        predict(image);
+    });
+});
