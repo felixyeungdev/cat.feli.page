@@ -4,7 +4,7 @@ const startButton = document.querySelector("#start");
 const goButton = document.querySelector("#go");
 const resultElement = document.querySelector("#result");
 const camerasSelect = document.querySelector("#cameras");
-const version = "v1.1.6";
+const version = "v1.1.7";
 
 let model, webcam, maxPredictions, mobilenetModel;
 
@@ -99,7 +99,9 @@ async function predict(element) {
         ).length > 0;
 
     if (!isCat) {
-        resultElement.textContent = `That looks like more of a ${mobilenetClassify[0].className}`;
+        resultElement.innerHTML = `That's not a cat! That's a <br/>${
+            mobilenetClassify[0].className.split(", ")[0]
+        }`;
         return;
     }
 
@@ -118,7 +120,7 @@ async function predict(element) {
 
     resultElement.innerHTML = `I am <span>${(top.probability * 100).toFixed(
         0
-    )}</span>% sure that's ${top.className}`;
+    )}</span>% sure that's <br/>${top.className}`;
     // for (let i = 0; i < maxPredictions; i++) {
     //     const classPrediction =
     //         prediction[i].className +
