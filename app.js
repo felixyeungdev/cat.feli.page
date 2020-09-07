@@ -2,9 +2,10 @@ const MODEL_URL = "./assets/models/cats/";
 const webCamContainer = document.querySelector("#webcam");
 const startButton = document.querySelector("#start");
 const goButton = document.querySelector("#go");
+const backButton = document.querySelector("#back");
 const resultElement = document.querySelector("#result");
 const camerasSelect = document.querySelector("#cameras");
-const version = "v1.1.7";
+const version = "v1.1.8";
 
 let model, webcam, maxPredictions, mobilenetModel;
 
@@ -60,24 +61,29 @@ async function showScreen(screenId) {
 }
 
 async function init(deviceId, useCamera = true) {
-    mobilenetModel = await mobilenet.load();
+    resultElement.innerHTML = "Initialising...";
+
+    if (!mobilenetModel) mobilenetModel = await mobilenet.load();
 
     showScreen("ml");
 
     const modelURL = MODEL_URL + "model.json";
     const metadataURL = MODEL_URL + "metadata.json";
 
-    model = await tmImage.load(modelURL, metadataURL);
-    maxPredictions = model.getTotalClasses();
+    if (!model) model = await tmImage.load(modelURL, metadataURL);
+    resultElement.innerHTML = "Identifying...";
+
+    // maxPredictions = model.getTotalClasses();
 
     if (useCamera) {
         const flip = false;
         webcam = new tmImage.Webcam(200, 200, flip);
         await webcam.setup({ deviceId });
         await webcam.play();
-        // window.requestAnimationFrame(loop);
-        setInterval(loop, 200);
-
+        window.requestAnimationFrame(loop);
+        // loop();
+        // setInterval(loop, 500);
+        webCamContainer.innerHTML = "";
         webCamContainer.appendChild(webcam.canvas);
     }
 }
@@ -85,7 +91,8 @@ async function init(deviceId, useCamera = true) {
 async function loop() {
     webcam.update();
     await predict();
-    // window.requestAnimationFrame(loop);
+
+    window.requestAnimationFrame(loop);
 }
 
 async function predict(element) {
@@ -156,9 +163,17 @@ startButton.addEventListener("click", chooseCamera);
 
 document.querySelectorAll("img").forEach((image) => {
     image.addEventListener("click", async () => {
-        webCamContainer.append(image);
+        webCamContainer.innerHTML = `<img src="${image.src}"></img>`;
         showScreen("ml");
+        backButton.style.display = "grid";
+        resultElement.innerHTML = "Identifying...";
         await init(null, false);
         predict(image);
     });
 });
+
+backButton.addEventListener("click", (e) => {
+    showScreen("camera-picker");
+    backButton.style.display = "none";
+});
+backButton.style.display = "none";

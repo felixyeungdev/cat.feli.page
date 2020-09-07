@@ -119,10 +119,41 @@ section .wrapper {
   height: 64px;
   border-radius: 8px;
   margin: 8px;
+  cursor: pointer;
 }
 
 body section.show {
   display: -ms-grid;
   display: grid;
+}
+
+.fabs {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+}
+
+.fabs .fab {
+  width: 48px;
+  height: 48px;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  outline: none;
+  font-size: 18px;
+  border-radius: 100px;
+  border: 2px solid #bcbcbc;
+  -webkit-transition: background-color 250ms ease-in-out;
+  transition: background-color 250ms ease-in-out;
+  background-color: #f0f8ff;
+}
+
+.fabs .fab:hover {
+  background-color: #d7ecff;
+}
+
+.fabs .fab:active {
+  background-color: #ffffff;
 }
 /*# sourceMappingURL=styles.css.map */

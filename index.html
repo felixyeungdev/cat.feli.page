@@ -4,6 +4,21 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Which Cat is Dis?</title>
+
+        <link
+            rel="shortcut icon"
+            type="image/png"
+            href="./assets/icons/cat.png"
+        />
+
+        <link rel="apple-touch-icon" href="./assets/icons/cat.png" />
+        <meta name="apple-mobile-web-app-title" content="Which Cat is Dis" />
+
+        <script
+            src="https://kit.fontawesome.com/f583587016.js"
+            crossorigin="anonymous"
+        ></script>
+
         <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@1.0.0"></script>
         <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
@@ -11,6 +26,11 @@
         <link rel="stylesheet" href="styles.css" />
     </head>
     <body>
+        <div class="fabs">
+            <div class="fab back" id="back">
+                <i class="fas fa-arrow-left"></i>
+            </div>
+        </div>
         <div id="version"></div>
         <section id="welcome" class="show">
             <div class="wrapper">
