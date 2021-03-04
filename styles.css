@@ -110,8 +110,8 @@ section .wrapper {
   display: grid;
   -ms-grid-columns: 1fr 1fr;
       grid-template-columns: 1fr 1fr;
-  -ms-grid-rows: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
+  -ms-grid-rows: 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr;
 }
 
 #camera-picker .wrapper .images img {
@@ -120,6 +120,27 @@ section .wrapper {
   border-radius: 8px;
   margin: 8px;
   cursor: pointer;
+}
+
+#camera-picker .wrapper .images label {
+  grid-column: 1 / -1;
+  height: 64px;
+  border-radius: 8px;
+  margin: 8px;
+  border: 2px solid #bcbcbc;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+#camera-picker .wrapper .images label span {
+  text-align: center;
+}
+
+#camera-picker .wrapper .images label input {
+  display: none;
+  opacity: 0;
 }
 
 body section.show {

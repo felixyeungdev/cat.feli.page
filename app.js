@@ -5,7 +5,8 @@ const goButton = document.querySelector("#go");
 const backButton = document.querySelector("#back");
 const resultElement = document.querySelector("#result");
 const camerasSelect = document.querySelector("#cameras");
-const version = "v1.1.8";
+const imageUploadInput = document.querySelector("#image_upload");
+const version = "v1.1.9";
 
 let model, webcam, maxPredictions, mobilenetModel;
 
@@ -172,8 +173,28 @@ document.querySelectorAll("img").forEach((image) => {
     });
 });
 
+imageUploadInput.addEventListener("change", (e) => {
+    if (e.target.files && e.target.files[0]) {
+        const reader = new FileReader();
+
+        reader.onload = async (e) => {
+            webCamContainer.innerHTML = `<img src="${e.target.result}"></img>`;
+            showScreen("ml");
+            backButton.style.display = "grid";
+            resultElement.innerHTML = "Identifying...";
+            await init(null, false);
+            const image = webCamContainer.querySelector("img");
+            predict(image);
+        };
+
+        reader.readAsDataURL(e.target.files[0]);
+    }
+});
+
 backButton.addEventListener("click", (e) => {
     showScreen("camera-picker");
     backButton.style.display = "none";
 });
 backButton.style.display = "none";
+
+showScreen("camera-picker");

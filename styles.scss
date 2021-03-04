@@ -95,7 +95,7 @@ section {
         .images {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            grid-template-rows: 1fr 1fr;
+            grid-template-rows: 1fr 1fr 1fr;
 
             img {
                 width: 64px;
@@ -103,6 +103,24 @@ section {
                 border-radius: 8px;
                 margin: 8px;
                 cursor: pointer;
+            }
+
+            label {
+                grid-column: 1 / -1;
+                height: 64px;
+                border-radius: 8px;
+                margin: 8px;
+                border: 2px solid #bcbcbc;
+                display: grid;
+                place-items: center;
+                cursor: pointer;
+                span {
+                    text-align: center;
+                }
+                input {
+                    display: none;
+                    opacity: 0;
+                }
             }
         }
     }
