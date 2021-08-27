@@ -1,0 +1,24 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: white;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+
+    .timeline {
+        .timeframe {
+            padding: 2rem 0 2rem 0;
+        }
+        img {
+            width: 30vw;
+        }
+    }
+}
