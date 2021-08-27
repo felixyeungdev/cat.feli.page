@@ -16,9 +16,17 @@ body {
     .timeline {
         .timeframe {
             padding: 2rem 0 2rem 0;
-        }
-        img {
-            width: 30vw;
+            h2 {
+                margin-bottom: 1rem;
+            }
+            .trio {
+                border-radius: 0.5rem;
+                overflow: hidden;
+                display: flex;
+                img {
+                    width: 30vw;
+                }
+            }
         }
     }
 }

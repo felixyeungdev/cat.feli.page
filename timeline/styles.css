@@ -20,7 +20,19 @@ body .timeline .timeframe {
   padding: 2rem 0 2rem 0;
 }
 
-body .timeline img {
+body .timeline .timeframe h2 {
+  margin-bottom: 1rem;
+}
+
+body .timeline .timeframe .trio {
+  border-radius: 0.5rem;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+body .timeline .timeframe .trio img {
   width: 30vw;
 }
 /*# sourceMappingURL=styles.css.map */
