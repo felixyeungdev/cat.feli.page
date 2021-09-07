@@ -1,0 +1,37 @@
+import Link from "next/link";
+import React from "react";
+import { IconType } from "react-icons/lib";
+import SiteIcon from "../Icon";
+
+const AppBarNavLink: React.FC<{
+    Icon?: IconType;
+    href: string;
+}> = ({ children, Icon, href }) => {
+    return (
+        <Link href={href}>
+            <a className="text-indigo-600">{children}</a>
+        </Link>
+    );
+};
+
+const AppBar: React.FC = () => {
+    return (
+        <nav className="bg-opacity-90 min-h-[4rem] sticky top-0 backdrop-filter backdrop-blur bg-white z-50 ring-2 ring-gray-200">
+            <div className="max-w-[100rem] mx-6 flex justify-between">
+                <div>
+                    <Link href="/">
+                        <a className="flex items-center space-x-3 min-h-[4rem] text-indigo-600">
+                            <SiteIcon />
+                            <span className="text-xl font-bold">Cats</span>
+                        </a>
+                    </Link>
+                </div>
+                <div className="flex items-center space-x-2">
+                    <AppBarNavLink href="/gallery">Gallery</AppBarNavLink>
+                </div>
+            </div>
+        </nav>
+    );
+};
+
+export default AppBar;
