@@ -36,7 +36,7 @@ const cats: {
             "This is Shiba, he's a cat. He loves eating, like a lot. He is rather playful. He'll play with anything, a ball, a string, a piece of string, a ball of string, a piece of string tied to a ball of string. He is happy-go-lucky, and rarely ever has a bad mood. Shiba loves hiding in boxes, and under things. He is a very good pet, and he's amazing.",
         meetTheCats: true,
         adopted: true,
-        favouriteToys: ["Stick", "Feathers on a Stick"],
+        favouriteToys: ["Stick", "Feathers on a Stick", "Fish"],
     },
     simba: {
         name: "Simba",
