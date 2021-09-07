@@ -6,7 +6,7 @@ import { HiOutlineSparkles } from "react-icons/hi";
 const ComingSoonPage = () => {
     return (
         <div className="flex items-center justify-center h-screen bg-gradient-to-r from-blue-600 to-purple-600">
-            <div className="flex flex-col items-center text-gray-50">
+            <div className="flex flex-col items-center text-gray-50 max-w-[80rem] w-full mx-6 md:mx-10">
                 <div className="w-full max-w-sm mb-6">
                     <div
                         style={{
