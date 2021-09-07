@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import { IconType } from "react-icons/lib";
-import SiteIcon from "../Icon";
+import SiteIcon from "./Icon";
 
 const AppBarNavLink: React.FC<{
     Icon?: IconType;
@@ -26,7 +26,7 @@ const AppBar: React.FC = () => {
                         </a>
                     </Link>
                 </div>
-                <div className="flex items-center space-x-2">
+                <div className="flex items-center space-x-2 font-medium">
                     <AppBarNavLink href="/gallery">Gallery</AppBarNavLink>
                 </div>
             </div>

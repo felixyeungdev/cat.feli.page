@@ -1,5 +1,6 @@
-import LinkButton from "components/LinkButton";
-import MeetTheCats from "components/meetTheCats/MeetTheCats";
+import LinkButton from "components/common/LinkButton";
+import MeetTheCats from "components/pages/home/meetTheCats/MeetTheCats";
+import ViewTimeline from "components/pages/home/viewTimeline/viewTimeline";
 import React from "react";
 
 const HomePage = () => {
@@ -7,9 +8,7 @@ const HomePage = () => {
         <>
             <h1></h1>
             <MeetTheCats />
-            <div className="flex justify-center my-16">
-                <LinkButton href="/timeline">View Timeline</LinkButton>
-            </div>
+            <ViewTimeline />
         </>
     );
 };

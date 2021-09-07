@@ -1,7 +1,7 @@
 import React from "react";
 import { HiOutlineSparkles } from "react-icons/hi";
-import LinkButton from "../LinkButton";
-import Typography from "../Typography";
+import LinkButton from "../common/LinkButton";
+import Typography from "../common/Typography";
 
 const ComingSoonPage = () => {
     return (
