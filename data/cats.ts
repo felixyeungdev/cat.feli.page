@@ -25,7 +25,7 @@ const cats: {
             "This is Sesame, he's a cat. He loves jumping around, bouncing through furniture. He'll jump on you when you're about to fall asleep, causing you to wake up. He climbs walls, and jumps off, smashing into things. He meows loudly when you're sleeping, and wake you up. He walks across the keyboard, causing me to type gibberish. He'll also nibble at your fingers. He's an idiot, but we love him.",
         meetTheCats: true,
         adopted: true,
-        favouriteToys: ["Laser Pointer"],
+        favouriteToys: ["Laser Pointer", "Table Tennis Ball"],
     },
     shiba: {
         name: "Shiba",
