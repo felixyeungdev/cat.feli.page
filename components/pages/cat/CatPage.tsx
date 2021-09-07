@@ -1,3 +1,4 @@
+import PageHeadFrag from "components/common/PageHeadFrag";
 import Typography from "components/common/Typography";
 import DataTile from "components/DataTile";
 import cats, { CatData } from "data/cats";
@@ -94,28 +95,33 @@ const CatPage: NextPage<{ cat: CatData }> = ({ cat }) => {
     );
 
     return (
-        <div className="flex justify-center">
-            <div className="max-w-[80rem] w-full mx-6 md:mx-10">
-                <div className="flex flex-col items-center py-16 md:hidden">
-                    {avatarDiv}
-                    {nameDiv}
-                    {whoIsThisDiv}
-                    {dataDiv}
-                    {favouriteToysDiv}
-                </div>
-                <div className="hidden grid-cols-5 gap-16 py-8 md:grid">
-                    <div className="col-span-2">
-                        <div className="flex justify-center">{avatarDiv}</div>
+        <>
+            <PageHeadFrag title={name} />
+            <div className="flex justify-center">
+                <div className="max-w-[80rem] w-full mx-6 md:mx-10">
+                    <div className="flex flex-col items-center py-16 md:hidden">
+                        {avatarDiv}
                         {nameDiv}
-                        {dataDiv}
-                    </div>
-                    <div className="col-span-3">
                         {whoIsThisDiv}
+                        {dataDiv}
                         {favouriteToysDiv}
+                    </div>
+                    <div className="hidden grid-cols-5 gap-16 py-8 md:grid">
+                        <div className="col-span-2">
+                            <div className="flex justify-center">
+                                {avatarDiv}
+                            </div>
+                            {nameDiv}
+                            {dataDiv}
+                        </div>
+                        <div className="col-span-3">
+                            {whoIsThisDiv}
+                            {favouriteToysDiv}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 
