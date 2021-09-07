@@ -61,7 +61,7 @@ const cats: {
         name: "Caramel",
         avatar: "/assets/images/caramel.jpg",
         birthday: new Date().toISOString(),
-        dateOfDeath: new Date().toISOString(),
+        dateOfDeath: new Date("2020-09-11").toISOString(),
         weight: [{ date: new Date("2021-09-05").toISOString(), value: 4.06 }],
         description:
             " This is Caramel, she's a cat. She died a while ago, we miss her a lot. R.I.P. Caramel was a pale yellow, amber and black cat. She was very young, and very playful. She used to be very happy, until her disease caught onto her. She lost her battle, and is now forever asleep. Caramel was my cat, and we miss her very much.",

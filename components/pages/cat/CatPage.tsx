@@ -5,7 +5,7 @@ import moment from "moment";
 import { NextPage } from "next";
 import React from "react";
 import { FaBirthdayCake } from "react-icons/fa";
-import { HiOutlineScale } from "react-icons/hi";
+import { HiEmojiSad, HiOutlineScale } from "react-icons/hi";
 
 const CatPage: NextPage<{ cat: CatData }> = ({ cat }) => {
     const {
@@ -56,8 +56,19 @@ const CatPage: NextPage<{ cat: CatData }> = ({ cat }) => {
                 Icon={FaBirthdayCake}
                 label="Birthday"
                 value={moment(birthday).format("LL")}
-                hint={`${moment().diff(birthday, "years")} old`}
+                hint={`${moment().diff(birthday, "years")} years old`}
             />
+            {dateOfDeath && (
+                <DataTile
+                    Icon={HiEmojiSad}
+                    label="Date of Death"
+                    value={moment(dateOfDeath).format("LL")}
+                    hint={`${moment(birthday).diff(
+                        dateOfDeath,
+                        "years"
+                    )} years old`}
+                />
+            )}
             <DataTile
                 Icon={HiOutlineScale}
                 label="Weight"
@@ -74,7 +85,7 @@ const CatPage: NextPage<{ cat: CatData }> = ({ cat }) => {
             <Typography.h2>
                 Favourite Toy{favouriteToys.length > 1 ? "s" : ""}
             </Typography.h2>
-            <ul>
+            <ul className="list-disc list-inside">
                 {favouriteToys.map((toy, i) => (
                     <li key={i}>{toy}</li>
                 ))}
