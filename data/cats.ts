@@ -11,9 +11,14 @@ export interface CatData {
     meetTheCats: boolean;
     favouriteToys: string[];
     adopted: boolean;
+    gender: "male" | "female";
 }
 
 const cats: {
+    sesame: CatData;
+    shiba: CatData;
+    simba: CatData;
+    caramel: CatData;
     [key: string]: CatData;
 } = {
     sesame: {
@@ -26,6 +31,7 @@ const cats: {
         meetTheCats: true,
         adopted: true,
         favouriteToys: ["Laser Pointer", "Table Tennis Ball"],
+        gender: "male",
     },
     shiba: {
         name: "Shiba",
@@ -37,6 +43,7 @@ const cats: {
         meetTheCats: true,
         adopted: true,
         favouriteToys: ["Stick", "Feathers on a Stick", "Fish"],
+        gender: "male",
     },
     simba: {
         name: "Simba",
@@ -48,6 +55,7 @@ const cats: {
         meetTheCats: true,
         adopted: true,
         favouriteToys: ["Laser Pointer"],
+        gender: "male",
     },
     caramel: {
         name: "Caramel",
@@ -60,6 +68,7 @@ const cats: {
         meetTheCats: false,
         adopted: true,
         favouriteToys: ["Laser Pointer"],
+        gender: "female",
     },
 };
 
