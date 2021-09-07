@@ -85,7 +85,7 @@ const CatPage: NextPage<{ cat: CatData }> = ({ cat }) => {
             <Typography.h2>
                 Favourite Toy{favouriteToys.length > 1 ? "s" : ""}
             </Typography.h2>
-            <ul className="list-disc list-inside">
+            <ul className="list-inside md:list-disc">
                 {favouriteToys.map((toy, i) => (
                     <li key={i}>{toy}</li>
                 ))}
