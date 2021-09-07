@@ -16,8 +16,8 @@ const AppBarNavLink: React.FC<{
 
 const AppBar: React.FC = () => {
     return (
-        <nav className="bg-opacity-90 min-h-[4rem] sticky top-0 backdrop-filter backdrop-blur bg-white z-50 ring-2 ring-gray-200">
-            <div className="max-w-[100rem] mx-6 flex justify-between">
+        <nav className="bg-opacity-90 min-h-[4rem] sticky top-0 backdrop-filter backdrop-blur bg-white z-50 ring-2 ring-gray-200 flex justify-center">
+            <div className="max-w-[80rem] md:mx-8 mx-6 flex justify-between w-full">
                 <div>
                     <Link href="/">
                         <a className="flex items-center space-x-3 min-h-[4rem] text-indigo-600">

@@ -7,7 +7,7 @@ const HomePage = () => {
         <>
             <h1></h1>
             <MeetTheCats />
-            <div className="flex justify-center mt-16">
+            <div className="flex justify-center my-16">
                 <LinkButton href="/timeline">View Timeline</LinkButton>
             </div>
         </>

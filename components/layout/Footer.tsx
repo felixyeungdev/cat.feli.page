@@ -5,8 +5,13 @@ const Footer = () => {
         <div className="flex justify-center py-8 bg-white ring-2 ring-gray-200">
             <span>
                 Copyright © 2021{" "}
-                <a href="https://felixyeung.com">Felix Yeung</a>. All rights
-                reserved.
+                <a
+                    href="https://felixyeung.com"
+                    className="transition-colors hover:text-indigo-600"
+                >
+                    Felix Yeung
+                </a>
+                . All rights reserved.
             </span>
         </div>
     );
