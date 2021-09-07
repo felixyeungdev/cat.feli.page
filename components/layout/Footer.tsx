@@ -7,6 +7,7 @@ const Footer = () => {
                 Copyright © 2021{" "}
                 <a
                     href="https://felixyeung.com"
+                    target="_blank"
                     className="transition-colors hover:text-indigo-600"
                 >
                     Felix Yeung
