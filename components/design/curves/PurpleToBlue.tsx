@@ -7,7 +7,7 @@ const PurpleToBlue = () => {
             xmlns="http://www.w3.org/2000/svg"
             xmlnsXlink="http://www.w3.org/1999/xlink"
             version="1.1"
-            className="w-full"
+            className="wave"
         >
             <rect x="0" y="0" width="900" height="150" fill="#7c3aed"></rect>
             <path
