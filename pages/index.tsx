@@ -1,4 +1,3 @@
-import LinkButton from "components/common/LinkButton";
 import BlueToWhite from "components/design/curves/BlueToWhite";
 import PurpleToBlue from "components/design/curves/PurpleToBlue";
 import WhiteToBlue from "components/design/curves/WhiteToBlue";
