@@ -1,3 +1,14 @@
-import ComingSoonPage from "./coming-soon";
+import GalleryGridView from "components/pages/gallery/galleryGridView/GalleryGridView";
+import Gallery from "components/pages/gallery/title/Gallery";
+import React from "react";
 
-export default ComingSoonPage;
+const GalleryPage = () => {
+    return (
+        <>
+            <Gallery />
+            <GalleryGridView />
+        </>
+    );
+};
+
+export default GalleryPage;

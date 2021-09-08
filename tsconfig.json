@@ -15,6 +15,11 @@
         "jsx": "preserve",
         "baseUrl": "."
     },
-    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+    "include": [
+        "next-env.d.ts",
+        "**/*.ts",
+        "**/*.tsx",
+        "components/pages/gallery/galleryGridView/GalleryGridView.tss"
+    ],
     "exclude": ["node_modules"]
 }
