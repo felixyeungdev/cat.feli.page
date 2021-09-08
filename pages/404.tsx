@@ -1,6 +1,8 @@
 import LinkButton from "components/common/LinkButton";
 import PageHeadFrag from "components/common/PageHeadFrag";
 import Typography from "components/common/Typography";
+import PurpleToWhite from "components/design/curves/PurpleToWhite";
+import WhiteToBlue from "components/design/curves/WhiteToBlue";
 import React from "react";
 import { HiOutlineExclamation } from "react-icons/hi";
 
@@ -8,7 +10,8 @@ const ComingSoonPage = () => {
     return (
         <>
             <PageHeadFrag title="Not Found" />
-            <div className="flex items-center justify-center h-screen bg-gradient-to-r from-blue-600 to-purple-600">
+            <WhiteToBlue />
+            <div className="flex items-center justify-center bg-gradient-to-b from-blue-600 to-purple-600">
                 <div className="flex flex-col items-center text-gray-50 max-w-[80rem] w-full mx-6 md:mx-10">
                     <div className="w-full max-w-sm mb-6">
                         <div
@@ -33,6 +36,7 @@ const ComingSoonPage = () => {
                     </div>
                 </div>
             </div>
+            <PurpleToWhite />
         </>
     );
 };
