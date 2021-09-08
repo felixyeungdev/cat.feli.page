@@ -45,7 +45,7 @@ const CatPage: NextPage<{ cat: CatData }> = ({ cat }) => {
     );
 
     const whoIsThisDiv = (
-        <div className="max-w-md mt-3 space-y-1 leading-7 text-center md:text-left">
+        <div className="mt-3 space-y-1 text-lg leading-7 text-center md:text-left">
             <Typography.h2>Who's this?</Typography.h2>
             <p>{description}</p>
         </div>
