@@ -1,12 +1,13 @@
 import PageHeadFrag from "components/common/PageHeadFrag";
 import Typography from "components/common/Typography";
 import DataTile from "components/DataTile";
-import cats, { CatData } from "data/cats";
+import { CatData } from "data/cats";
 import moment from "moment";
 import { NextPage } from "next";
 import React from "react";
 import { FaBirthdayCake } from "react-icons/fa";
 import { HiEmojiSad, HiOutlineScale } from "react-icons/hi";
+import { formatAge } from "utils/format";
 
 const CatPage: NextPage<{ cat: CatData }> = ({ cat }) => {
     const {
@@ -57,7 +58,7 @@ const CatPage: NextPage<{ cat: CatData }> = ({ cat }) => {
                 Icon={FaBirthdayCake}
                 label="Birthday"
                 value={moment(birthday).format("LL")}
-                hint={`${moment().diff(birthday, "years")} years old`}
+                hint={!dateOfDeath && formatAge(birthday)}
             />
             {dateOfDeath && (
                 <DataTile
