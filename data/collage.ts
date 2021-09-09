@@ -1,4 +1,4 @@
-interface TimelineItem {
+interface CollageItem {
     date: Date;
     cats: {
         cat: string;
@@ -6,7 +6,7 @@ interface TimelineItem {
     }[];
 }
 
-const timeline: TimelineItem[] = [
+const collage: CollageItem[] = [
     {
         date: new Date("2020-09-19"),
         cats: [
@@ -43,4 +43,4 @@ const timeline: TimelineItem[] = [
     },
 ];
 
-export default timeline;
+export default collage;
