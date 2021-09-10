@@ -31,7 +31,7 @@ const GalleryGridView = () => {
 
     useEffect(() => {
         const onKeyDown = (e: KeyboardEvent) => {
-            if (!open) return;
+            if (!isOpen) return;
 
             const { code } = e;
             const rightKey = "ArrowRight";
@@ -45,7 +45,7 @@ const GalleryGridView = () => {
         return () => {
             document.removeEventListener("keydown", onKeyDown);
         };
-    }, [open, index]);
+    }, [isOpen, index]);
 
     useEffect(() => {
         const image = new Image();
