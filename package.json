@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.4.1",
+    "@tailwindcss/typography": "^0.4.1",
     "framer-motion": "^4.1.17",
     "moment": "^2.29.1",
     "next": "latest",
