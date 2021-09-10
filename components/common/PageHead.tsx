@@ -12,7 +12,7 @@ const PageHead = () => {
                 {/* <link rel="apple-touch-icon" href="" /> */}
                 {/* <meta name="apple-mobile-web-app-capable" content="yes" /> */}
 
-                <meta name="theme-color" content="#f9a828" />
+                <meta name="theme-color" content="#4f46e5" />
                 <link
                     rel="search"
                     href="/open-search.xml"
