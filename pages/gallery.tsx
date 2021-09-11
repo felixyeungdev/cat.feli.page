@@ -1,11 +1,11 @@
+import PageTitle from "components/common/PageTitle";
 import GalleryGridView from "components/pages/gallery/galleryGridView/GalleryGridView";
-import Gallery from "components/pages/gallery/title/Gallery";
 import React from "react";
 
 const GalleryPage = () => {
     return (
         <>
-            <Gallery />
+            <PageTitle>Gallery</PageTitle>
             <GalleryGridView />
         </>
     );
