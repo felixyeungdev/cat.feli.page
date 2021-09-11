@@ -20,6 +20,12 @@ const FontAwesome = (
     </a>
 );
 
+const UnDraw = (
+    <a href="https://undraw.co/" target="_blank">
+        unDraw
+    </a>
+);
+
 const NextJS = (
     <a href="https://nextjs.org/" target="_blank">
         Next.js
@@ -56,6 +62,7 @@ const Credits = () => {
                         <h2>Illustrations</h2>
                         <ul>
                             <li>{FelixYeung}</li>
+                            <li>{UnDraw}</li>
                         </ul>
                         <p>
                             This site is powered by {NextJS} and hosted by{" "}
