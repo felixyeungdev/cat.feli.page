@@ -10,11 +10,18 @@ import {
 } from "react-icons/hi";
 import ImageView from "../imageView/ImageView";
 
+const swipeConfidenceThreshold = 10000;
+const swipePower = (offset: number, velocity: number) => {
+    return Math.abs(offset) * velocity;
+};
+
 const GalleryGridView = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [width, setWidth] = useState(0);
+    const [windowWidth, setWindowWidth] = useState(0);
     const [height, setHeight] = useState(0);
     const [index, setIndex] = useState(0);
+    const [lastChange, setLastChange] = useState(0);
 
     const currentIsFirst = index === 0;
     const currentIsLast = index === gallery.length - 1;
@@ -27,6 +34,7 @@ const GalleryGridView = () => {
             newIndex = 0;
         }
         setIndex(newIndex);
+        if (newIndex !== index) setLastChange(delta);
     };
 
     useEffect(() => {
@@ -61,6 +69,7 @@ const GalleryGridView = () => {
             const w = iw * scale;
             const h = ih * scale;
 
+            setWindowWidth(ww);
             setWidth(w);
             setHeight(h);
         };
@@ -104,10 +113,60 @@ const GalleryGridView = () => {
                                 }}
                             >
                                 <div className="fixed inset-0 flex items-center justify-center bg-black">
-                                    <img
-                                        src={gallery[index]}
-                                        style={{ width, height }}
-                                    />
+                                    <AnimatePresence>
+                                        <motion.img
+                                            className="fixed"
+                                            key={gallery[index]}
+                                            transition={{
+                                                duration: 0.25,
+                                            }}
+                                            variants={{
+                                                initial: {
+                                                    opacity: 0,
+                                                },
+                                                animate: {
+                                                    x: 0,
+                                                    width,
+                                                    height,
+                                                    opacity: 1,
+                                                },
+                                                exit: {
+                                                    opacity: 0,
+                                                },
+                                            }}
+                                            initial="initial"
+                                            animate="animate"
+                                            exit="exit"
+                                            src={gallery[index]}
+                                            drag="x"
+                                            dragConstraints={{
+                                                left: 0,
+                                                right: 0,
+                                            }}
+                                            dragElastic={1}
+                                            onDragEnd={(
+                                                e,
+                                                { offset, velocity }
+                                            ) => {
+                                                const swipe = swipePower(
+                                                    offset.x,
+                                                    velocity.x
+                                                );
+
+                                                if (
+                                                    swipe <
+                                                    -swipeConfidenceThreshold
+                                                ) {
+                                                    changeIndex(1);
+                                                } else if (
+                                                    swipe >
+                                                    swipeConfidenceThreshold
+                                                ) {
+                                                    changeIndex(-1);
+                                                }
+                                            }}
+                                        />
+                                    </AnimatePresence>
                                 </div>
                                 <button
                                     className="fixed flex items-center justify-center w-12 h-12 text-4xl text-gray-300 bg-gray-500 rounded-full bg-opacity-[0] hover:bg-opacity-30 active:bg-opacity-60 top-2 left-4 transition-colors outline-none"
