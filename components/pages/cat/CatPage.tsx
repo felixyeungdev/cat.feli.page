@@ -1,6 +1,6 @@
 import PageHeadFrag from "components/common/PageHeadFrag";
 import Typography from "components/common/Typography";
-import DataTile from "components/DataTile";
+import DataTile from "components/pages/cat/DataTile";
 import { CatData } from "data/cats";
 import moment from "moment";
 import { NextPage } from "next";
