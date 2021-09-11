@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import Link from "next/link";
 import React from "react";
 import { IconType } from "react-icons/lib";
@@ -16,7 +17,10 @@ const AppBarNavLink: React.FC<{
 
 const AppBar: React.FC = () => {
     return (
-        <nav className="bg-opacity-90 min-h-[4rem] sticky top-0 backdrop-filter backdrop-blur bg-white z-50 ring-2 ring-gray-200 flex justify-center">
+        <motion.nav
+            layoutId="AppBar"
+            className="bg-opacity-90 min-h-[4rem] sticky top-0 backdrop-filter backdrop-blur bg-white z-50 ring-2 ring-gray-200 flex justify-center"
+        >
             <div className="max-w-[80rem] md:mx-8 mx-6 flex justify-between w-full">
                 <div>
                     <Link href="/">
@@ -30,7 +34,7 @@ const AppBar: React.FC = () => {
                     <AppBarNavLink href="/gallery">Gallery</AppBarNavLink>
                 </div>
             </div>
-        </nav>
+        </motion.nav>
     );
 };
 
