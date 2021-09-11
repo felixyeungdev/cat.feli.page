@@ -169,20 +169,20 @@ const GalleryGridView = () => {
                                     </AnimatePresence>
                                 </div>
                                 <button
-                                    className="fixed flex items-center justify-center w-12 h-12 text-4xl text-gray-300 bg-gray-500 rounded-full bg-opacity-[0] hover:bg-opacity-30 active:bg-opacity-60 top-2 left-4 transition-colors outline-none"
+                                    className="gallery__action-button top-2 left-4"
                                     onClick={() => setIsOpen(false)}
                                 >
                                     <HiOutlineX />
                                 </button>
                                 <button
-                                    className="fixed flex items-center justify-center w-12 h-12 text-4xl text-gray-300 bg-gray-500 rounded-full bg-opacity-[0] hover:bg-opacity-30 active:bg-opacity-60 top-1/2 -translate-y-1/2 transform left-4 transition-colors outline-none disabled:hidden"
+                                    className="transform -translate-y-1/2 gallery__action-button top-1/2 left-4"
                                     disabled={currentIsFirst}
                                     onClick={() => changeIndex(-1)}
                                 >
                                     <HiOutlineChevronLeft />
                                 </button>
                                 <button
-                                    className="fixed flex items-center justify-center w-12 h-12 text-4xl text-gray-300 bg-gray-500 rounded-full bg-opacity-[0] hover:bg-opacity-30 active:bg-opacity-60 top-1/2 -translate-y-1/2 transform right-4 transition-colors outline-none disabled:hidden"
+                                    className="transform -translate-y-1/2 gallery__action-button top-1/2 right-4"
                                     disabled={currentIsLast}
                                     onClick={() => changeIndex(1)}
                                 >

@@ -3,3 +3,7 @@
 .wave {
     @apply w-full;
 }
+
+.gallery__action-button {
+    @apply fixed flex items-center justify-center w-12 h-12 text-4xl text-gray-300 bg-white rounded-full bg-opacity-[0] hover:bg-opacity-20 active:bg-opacity-30 transition-colors outline-none disabled:hidden;
+}
