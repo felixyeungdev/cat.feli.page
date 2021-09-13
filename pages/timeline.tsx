@@ -118,6 +118,13 @@ const TimelinePage = () => {
             <div className="flex items-center justify-center">
                 <div className="flex items-center max-w-[80rem] w-full mx-6 md:mx-10 my-8">
                     <div className="w-full">
+                        <div className="hidden grid-cols-12 gap-8 md:grid min-h-[1rem]">
+                            <div className="col-span-3"></div>
+                            <div className="flex justify-center col-span-1">
+                                <div className="h-full max-w-[0.5rem] flex-grow bg-gradient-to-r from-blue-600 to bg-purple-600 rounded-t-md"></div>
+                            </div>
+                            <div className="col-span-8"></div>
+                        </div>
                         {timeline.map(({ date: d, title }, i) => {
                             const date = moment(d);
                             const lastDate =
@@ -138,6 +145,13 @@ const TimelinePage = () => {
                                 </Fragment>
                             );
                         })}
+                        <div className="hidden grid-cols-12 gap-8 md:grid min-h-[1rem]">
+                            <div className="col-span-3"></div>
+                            <div className="flex justify-center col-span-1">
+                                <div className="h-full max-w-[0.5rem] flex-grow bg-gradient-to-r from-blue-600 to bg-purple-600 rounded-b-md"></div>
+                            </div>
+                            <div className="col-span-8"></div>
+                        </div>
                     </div>
                 </div>
             </div>
