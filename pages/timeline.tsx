@@ -85,7 +85,15 @@ const TimelineEvent: React.FC<{ date: moment.Moment; title: string }> = ({
 };
 
 const RichText: React.FC<{ text: string }> = ({ text }) => {
-    let parts: React.ReactNodeArray = text.split(" ");
+    let parts: React.ReactNodeArray = text
+        .split(" ")
+        .map((e, i, a) => (a.length - 1 !== i ? [e, " "] : [e]))
+        .flat()
+        .map((e) =>
+            e.split(",").map((e, i, a) => (a.length - 1 !== i ? [e, ","] : [e]))
+        )
+        .flat()
+        .flat();
     parts = parts.map((part) => (part === "Sesame" ? Sesame : part));
     parts = parts.map((part) => (part === "Shiba" ? Shiba : part));
     parts = parts.map((part) => (part === "Simba" ? Simba : part));
@@ -93,9 +101,9 @@ const RichText: React.FC<{ text: string }> = ({ text }) => {
 
     return (
         <div className="prose max-w-none">
-            {parts.map((part, i) => (
+            {parts.map((part, i, arr) => (
                 <>
-                    {i === 0 ? "" : " "}
+                    {arr[i + 1] === " " ? " " : ""}
                     {part}
                 </>
             ))}
