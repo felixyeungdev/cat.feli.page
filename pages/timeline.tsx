@@ -35,7 +35,7 @@ const Year: React.FC<{ date: moment.Moment }> = ({ date }) => {
                 </div>
             </div>
             <div className="flex justify-center col-span-1">
-                <div className="h-full max-w-[0.5rem] flex-grow bg-indigo-600"></div>
+                <div className="h-full max-w-[0.5rem] flex-grow bg-gradient-to-r from-blue-600 to bg-purple-600"></div>
             </div>
             <div className="col-span-8"></div>
         </div>
@@ -51,7 +51,7 @@ const Month: React.FC<{ date: moment.Moment }> = ({ date }) => {
                 </div>
             </div>
             <div className="flex justify-center col-span-1">
-                <div className="h-full max-w-[0.5rem] flex-grow bg-indigo-600"></div>
+                <div className="h-full max-w-[0.5rem] flex-grow bg-gradient-to-r from-blue-600 to bg-purple-600"></div>
             </div>
             <div className="col-span-8"></div>
         </div>
@@ -63,9 +63,9 @@ const TimelineEvent: React.FC<{ date: moment.Moment; title: string }> = ({
     title,
 }) => {
     return (
-        <div className="grid-cols-12 gap-8 md:grid">
+        <div className="grid-cols-12 gap-8 transition rounded-lg md:grid md:hover:shadow-md md:hover:bg-white group">
             <div className="col-span-3">
-                <div className="text-sm font-light md:text-right pt-1.5">
+                <div className="text-sm font-light md:text-right pt-1.5 md:pb-1.5">
                     <span className="hidden prose md:block">
                         {date.format("D")}
                     </span>
@@ -75,9 +75,9 @@ const TimelineEvent: React.FC<{ date: moment.Moment; title: string }> = ({
                 </div>
             </div>
             <div className="flex justify-center col-span-1">
-                <div className="h-full max-w-[0.5rem] flex-grow bg-indigo-600"></div>
+                <div className="h-full max-w-[0.5rem] flex-grow bg-gradient-to-r group-hover:scale-x-150 from-blue-600 to bg-purple-600 transition-transform"></div>
             </div>
-            <div className="col-span-8 md:pt-1.5">
+            <div className="col-span-8 md:py-1.5">
                 <RichText text={title} />
             </div>
         </div>
@@ -107,7 +107,7 @@ const TimelinePage = () => {
     return (
         <>
             <PageTitle>Timeline</PageTitle>
-            <div className="flex items-center justify-center bg-white">
+            <div className="flex items-center justify-center">
                 <div className="flex items-center max-w-[80rem] w-full mx-6 md:mx-10 my-8">
                     <div className="w-full">
                         {timeline.map(({ date: d, title }, i) => {
