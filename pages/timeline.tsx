@@ -6,8 +6,8 @@ import Link from "next/link";
 import React, { Fragment } from "react";
 
 const Sesame = (
-    <Link href="/about/simba">
-        <a>Simba</a>
+    <Link href="/about/sesame">
+        <a>Sesame</a>
     </Link>
 );
 const Shiba = (
