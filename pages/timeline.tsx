@@ -1,5 +1,7 @@
 import PageTitle from "components/common/PageTitle";
 import Typography from "components/common/Typography";
+import GreyToWhite from "components/design/wave/GreyToWhite";
+import WhiteToGrey from "components/design/wave/WhiteToGrey";
 import timeline from "data/timeline";
 import moment from "moment";
 import Link from "next/link";
@@ -115,6 +117,7 @@ const TimelinePage = () => {
     return (
         <>
             <PageTitle>Timeline</PageTitle>
+            <WhiteToGrey />
             <div className="flex items-center justify-center">
                 <div className="flex items-center max-w-[80rem] w-full mx-6 md:mx-10 my-8">
                     <div className="w-full">
@@ -155,6 +158,7 @@ const TimelinePage = () => {
                     </div>
                 </div>
             </div>
+            <GreyToWhite />
         </>
     );
 };
