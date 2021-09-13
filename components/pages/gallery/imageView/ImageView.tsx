@@ -13,7 +13,7 @@ const ImageView: React.FC<Props> = ({ src, onClick }) => {
         <div className="flex justify-center">
             <img
                 src={src}
-                className="max-w-[20rem] w-full object-cover cursor-pointer"
+                className="max-w-[20rem] w-full object-cover cursor-pointer hover:scale-105 transition hover:shadow-xl"
                 style={{ aspectRatio: "1/1" }}
                 onClick={onClick}
             />
