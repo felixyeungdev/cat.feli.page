@@ -1,7 +1,7 @@
 import { Dialog } from "@headlessui/react";
 import { gallery } from "data/gallery";
 import { AnimatePresence, motion } from "framer-motion";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
     HiArrowLeft,
     HiOutlineChevronLeft,
@@ -21,7 +21,6 @@ const GalleryGridView = () => {
     const [windowWidth, setWindowWidth] = useState(0);
     const [height, setHeight] = useState(0);
     const [index, setIndex] = useState(0);
-    const [lastChange, setLastChange] = useState(0);
 
     const currentIsFirst = index === 0;
     const currentIsLast = index === gallery.length - 1;
@@ -34,7 +33,6 @@ const GalleryGridView = () => {
             newIndex = 0;
         }
         setIndex(newIndex);
-        if (newIndex !== index) setLastChange(delta);
     };
 
     useEffect(() => {
@@ -112,32 +110,11 @@ const GalleryGridView = () => {
                                     duration: 0.2,
                                 }}
                             >
-                                <div className="fixed inset-0 flex items-center justify-center bg-black">
+                                <div className="fixed inset-0 bg-black">
                                     <AnimatePresence>
-                                        <motion.img
-                                            className="fixed"
+                                        <motion.div
+                                            className="fixed inset-0 flex items-center justify-center"
                                             key={gallery[index]}
-                                            transition={{
-                                                duration: 0.25,
-                                            }}
-                                            variants={{
-                                                initial: {
-                                                    opacity: 0,
-                                                },
-                                                animate: {
-                                                    x: 0,
-                                                    width,
-                                                    height,
-                                                    opacity: 1,
-                                                },
-                                                exit: {
-                                                    opacity: 0,
-                                                },
-                                            }}
-                                            initial="initial"
-                                            animate="animate"
-                                            exit="exit"
-                                            src={gallery[index]}
                                             drag="x"
                                             dragConstraints={{
                                                 left: 0,
@@ -165,7 +142,31 @@ const GalleryGridView = () => {
                                                     changeIndex(-1);
                                                 }
                                             }}
-                                        />
+                                            transition={{
+                                                duration: 0.25,
+                                            }}
+                                            variants={{
+                                                initial: {
+                                                    opacity: 0,
+                                                },
+                                                animate: {
+                                                    opacity: 1,
+                                                },
+                                                exit: {
+                                                    opacity: 0,
+                                                },
+                                            }}
+                                            initial="initial"
+                                            animate="animate"
+                                            exit="exit"
+                                        >
+                                            <img
+                                                className="pointer-events-none"
+                                                src={gallery[index]}
+                                                width={width}
+                                                height={height}
+                                            />
+                                        </motion.div>
                                     </AnimatePresence>
                                 </div>
                                 <button
