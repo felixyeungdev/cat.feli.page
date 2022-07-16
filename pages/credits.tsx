@@ -1,7 +1,7 @@
 import React from "react";
 
 const FelixYeung = (
-    <a href="https://felixyeung.com/" target="_blank">
+    <a href="https://felixyeung.com/" target="_blank" rel="noreferrer">
         Felix Yeung
     </a>
 );
@@ -9,31 +9,31 @@ const FelixYeung = (
 const Veronica = <span>Veronica</span>;
 
 const Heroicons = (
-    <a href="https://heroicons.com/" target="_blank">
+    <a href="https://heroicons.com/" target="_blank" rel="noreferrer">
         Heroicons
     </a>
 );
 
 const FontAwesome = (
-    <a href="https://fontawesome.com/" target="_blank">
+    <a href="https://fontawesome.com/" target="_blank" rel="noreferrer">
         Font Awesome
     </a>
 );
 
 const UnDraw = (
-    <a href="https://undraw.co/" target="_blank">
+    <a href="https://undraw.co/" target="_blank" rel="noreferrer">
         unDraw
     </a>
 );
 
 const NextJS = (
-    <a href="https://nextjs.org/" target="_blank">
+    <a href="https://nextjs.org/" target="_blank" rel="noreferrer">
         Next.js
     </a>
 );
 
 const Vercel = (
-    <a href="https://vercel.com/" target="_blank">
+    <a href="https://vercel.com/" target="_blank" rel="noreferrer">
         Vercel
     </a>
 );

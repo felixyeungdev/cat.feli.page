@@ -1,7 +1,11 @@
 import { motion } from "framer-motion";
-import React from "react";
+import React, { FC } from "react";
 
-const PageTitle: React.FC = ({ children }) => {
+interface Props {
+    children: React.ReactNode;
+}
+
+const PageTitle: FC<Props> = ({ children }) => {
     return (
         <div className="flex justify-center py-16 bg-white">
             <div className="max-w-[80rem] w-full mx-6 md:mx-10">

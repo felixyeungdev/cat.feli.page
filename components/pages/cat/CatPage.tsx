@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import PageHeadFrag from "components/common/PageHeadFrag";
 import Typography from "components/common/Typography";
 import DataTile from "components/pages/cat/DataTile";
@@ -36,6 +37,7 @@ const CatPage: NextPage<{ cat: CatData }> = ({ cat }) => {
                 height={256}
                 width={256}
                 className="w-48 h-48 rounded-full shadow-md"
+                alt={`${name}'s avatar`}
             />
         </div>
     );
@@ -48,7 +50,7 @@ const CatPage: NextPage<{ cat: CatData }> = ({ cat }) => {
 
     const whoIsThisDiv = (
         <div className="mt-3 space-y-1 text-lg leading-7 text-center md:text-left">
-            <Typography.h2>Who's this?</Typography.h2>
+            <Typography.h2>{"Who's this?"}</Typography.h2>
             <p>{description}</p>
         </div>
     );

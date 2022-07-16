@@ -6,7 +6,11 @@ import AppBar from "./AppBar";
 import Footer from "./Footer";
 import Loading from "./Loading";
 
-const Layout: React.FC = ({ children }) => {
+interface Props {
+    children: React.ReactNode;
+}
+
+const Layout: React.FC<Props> = ({ children }) => {
     const router = useRouter();
     const [loading, setLoading] = useState(false);
 
@@ -26,7 +30,7 @@ const Layout: React.FC = ({ children }) => {
             router.events.off("routeChangeComplete", routeChangeComplete);
             router.events.off("routeChangeError", routeChangeComplete);
         };
-    }, []);
+    }, [router.events]);
 
     return (
         <AnimateSharedLayout>

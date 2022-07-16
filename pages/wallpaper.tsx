@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import ActionButton from "components/common/ActionButton";
 import cats from "data/cats";
 import collage from "data/collage";
@@ -39,6 +40,7 @@ const WallpaperPage = () => {
                                     <img
                                         src={cat.avatar}
                                         className="w-32 h-32 scale-[90%] rounded-full"
+                                        alt={`${cat.name}'s avatar`}
                                     />
                                 </div>
                                 <div className="text-xl font-semibold text-center text-gray-900 dark:text-gray-50">
@@ -59,6 +61,7 @@ const WallpaperPage = () => {
                                             <img
                                                 src={url}
                                                 className="w-32 h-32"
+                                                alt={`${cat}'s avatar`}
                                             />
                                         </div>
                                     ))}

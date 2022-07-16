@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import LinkButton from "components/common/LinkButton";
 import PageHeadFrag from "components/common/PageHeadFrag";
 import Typography from "components/common/Typography";
@@ -21,7 +22,10 @@ const ComingSoonPage = () => {
                             }}
                             className="p-8 bg-white shadow-xl"
                         >
-                            <img src="/assets/images/undraw_page_not_found_su7k.svg" />
+                            <img
+                                src="/assets/images/undraw_page_not_found_su7k.svg"
+                                alt="404 Image"
+                            />
                         </div>
                     </div>
                     <Typography.h1>

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import LinkButton from "components/common/LinkButton";
 import PageHeadFrag from "components/common/PageHeadFrag";
 import Typography from "components/common/Typography";
@@ -21,7 +22,10 @@ const ComingSoonPage = () => {
                             }}
                             className="p-8 bg-white shadow-xl"
                         >
-                            <img src="/assets/images/undraw_under_construction_46pa.svg" />
+                            <img
+                                src="/assets/images/undraw_under_construction_46pa.svg"
+                                alt="Under construction image"
+                            />
                         </div>
                     </div>
                     <Typography.h1>

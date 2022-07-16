@@ -7,6 +7,7 @@ import SiteIcon from "./Icon";
 const AppBarNavLink: React.FC<{
     Icon?: IconType;
     href: string;
+    children: React.ReactNode;
 }> = ({ children, Icon, href }) => {
     return (
         <Link href={href}>

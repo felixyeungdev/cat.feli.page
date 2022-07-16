@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React from "react";
 
 const FavouriteToys = () => {
@@ -7,7 +8,10 @@ const FavouriteToys = () => {
                 <h2 className="text-4xl font-bold tracking-wide text-center text-indigo-600 ">
                     Their Favourite Toys
                 </h2>
-                <img src="/assets/images/toys/toys.svg" />
+                <img
+                    src="/assets/images/toys/toys.svg"
+                    alt="Toys - fish, feather on a stick, ball, mouse"
+                />
             </div>
         </div>
     );

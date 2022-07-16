@@ -3,12 +3,13 @@ import React from "react";
 
 interface Props {
     href: string;
+    children: React.ReactNode;
 }
 
 const LinkButton: React.FC<Props> = ({ href, children }) => {
     return (
         <Link href={href}>
-            <a className="inline-block py-3 px-8 bg-black text-white text-lg rounded-md hover:shadow-md hover:bg-opacity-80 active:bg-opacity-90 transition">
+            <a className="inline-block px-8 py-3 text-lg text-white transition bg-black rounded-md hover:shadow-md hover:bg-opacity-80 active:bg-opacity-90">
                 {children}
             </a>
         </Link>

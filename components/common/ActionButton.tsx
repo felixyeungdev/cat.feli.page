@@ -2,6 +2,7 @@ import React from "react";
 
 interface Props {
     onClick?: React.MouseEventHandler<HTMLButtonElement>;
+    children: React.ReactNode;
 }
 
 const ActionButton: React.FC<Props> = ({ children, onClick }) => {

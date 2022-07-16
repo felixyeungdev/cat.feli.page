@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { Dialog } from "@headlessui/react";
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
@@ -16,6 +17,7 @@ const ImageView: React.FC<Props> = ({ src, onClick }) => {
                 className="max-w-[20rem] w-full object-cover cursor-pointer hover:scale-105 transition hover:shadow-xl"
                 style={{ aspectRatio: "1/1" }}
                 onClick={onClick}
+                alt="Image of cat(s)"
             />
         </div>
     );

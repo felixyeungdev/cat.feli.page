@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import cats from "data/cats";
 import React from "react";
 import Link from "next/link";
@@ -19,6 +20,7 @@ const SimpleCatCard: React.FC<Props> = ({ cat }) => {
                         src={avatar}
                         width={96}
                         height={96}
+                        alt={`Picture of ${name}`}
                     />
                 </div>
             </div>

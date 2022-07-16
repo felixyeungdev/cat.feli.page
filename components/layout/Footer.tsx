@@ -13,6 +13,7 @@ const Footer = () => {
                             href="https://felixyeung.com"
                             target="_blank"
                             className="transition-colors hover:text-indigo-600"
+                            rel="noreferrer"
                         >
                             Felix Yeung
                         </a>

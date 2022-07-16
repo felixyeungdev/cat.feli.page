@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { Dialog } from "@headlessui/react";
 import { gallery } from "data/gallery";
 import { AnimatePresence, motion } from "framer-motion";
@@ -165,6 +166,7 @@ const GalleryGridView = () => {
                                                 src={gallery[index]}
                                                 width={width}
                                                 height={height}
+                                                alt="Image of cat(s)"
                                             />
                                         </motion.div>
                                     </AnimatePresence>
