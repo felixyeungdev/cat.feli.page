@@ -8,7 +8,7 @@ const Footer = () => {
             <div className="max-w-[80rem] md:mx-8 mx-6 flex justify-center w-full">
                 <div className="text-xs">
                     <div>
-                        Copyright © 2021{" "}
+                        Copyright © 2022{" "}
                         <a
                             href="https://felixyeung.com"
                             target="_blank"
