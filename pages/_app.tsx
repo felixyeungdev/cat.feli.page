@@ -1,5 +1,4 @@
 import React from "react";
-import "tailwindcss/tailwind.css";
 import "styles/global.css";
 import { AppProps } from "next/dist/shared/lib/router/router";
 import Layout from "components/layout/Layout";
