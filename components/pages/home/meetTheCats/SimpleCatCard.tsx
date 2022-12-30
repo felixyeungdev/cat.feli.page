@@ -30,11 +30,12 @@ const SimpleCatCard: React.FC<Props> = ({ cat }) => {
                     <div className="text-2xl font-semibold">{name}</div>
                 </div>
                 <div className="flex justify-center md:mb-3">
-                    <Link href={`/about/${cat}`}>
-                        <a className="px-4 py-2 rounded-md bg-gradient-to-b from-blue-600 to-[#4338CA] text-gray-50 flex items-center space-x-2 hover:scale-105 active:scale-95 transition-transform group hover:shadow">
-                            <FaPaw className="transition-transform group-hover:-rotate-6 group-active:rotate-6" />
-                            <span>About</span>
-                        </a>
+                    <Link
+                        href={`/about/${cat}`}
+                        className="px-4 py-2 rounded-md bg-gradient-to-b from-blue-600 to-[#4338CA] text-gray-50 flex items-center space-x-2 hover:scale-105 active:scale-95 transition-transform group hover:shadow"
+                    >
+                        <FaPaw className="transition-transform group-hover:-rotate-6 group-active:rotate-6" />
+                        <span>About</span>
                     </Link>
                 </div>
             </div>

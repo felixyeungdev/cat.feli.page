@@ -7,26 +7,10 @@ import moment from "moment";
 import Link from "next/link";
 import React, { Fragment } from "react";
 
-const Sesame = (
-    <Link href="/about/sesame">
-        <a>Sesame</a>
-    </Link>
-);
-const Shiba = (
-    <Link href="/about/shiba">
-        <a>Shiba</a>
-    </Link>
-);
-const Simba = (
-    <Link href="/about/simba">
-        <a>Simba</a>
-    </Link>
-);
-const Caramel = (
-    <Link href="/about/caramel">
-        <a>Caramel</a>
-    </Link>
-);
+const Sesame = <Link href="/about/sesame">Sesame</Link>;
+const Shiba = <Link href="/about/shiba">Shiba</Link>;
+const Simba = <Link href="/about/simba">Simba</Link>;
+const Caramel = <Link href="/about/caramel">Caramel</Link>;
 
 const Year: React.FC<{ date: moment.Moment }> = ({ date }) => {
     return (

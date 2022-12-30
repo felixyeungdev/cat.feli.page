@@ -20,10 +20,11 @@ const Footer = () => {
                         . All rights reserved.
                     </div>
                     <div>
-                        <Link href="/credits">
-                            <a className="transition-colors hover:text-indigo-600">
-                                Site Credits
-                            </a>
+                        <Link
+                            href="/credits"
+                            className="transition-colors hover:text-indigo-600"
+                        >
+                            Site Credits
                         </Link>
                     </div>
                 </div>
