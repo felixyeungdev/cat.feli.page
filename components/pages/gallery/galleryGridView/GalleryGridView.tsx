@@ -1,203 +1,149 @@
 /* eslint-disable @next/next/no-img-element */
-import { Dialog } from "@headlessui/react";
 import { gallery } from "data/gallery";
-import { AnimatePresence, motion } from "framer-motion";
-import React, { useEffect, useRef, useState } from "react";
-import {
-    HiArrowLeft,
-    HiOutlineChevronLeft,
-    HiOutlineChevronRight,
-    HiOutlineX,
-} from "react-icons/hi";
-import ImageView from "../imageView/ImageView";
+import React, { useEffect } from "react";
+import { Dialog } from "@headlessui/react";
+import { HiArrowLeft, HiArrowRight, HiX } from "react-icons/hi";
+import { AnimatePresence, motion, Variants } from "framer-motion";
 
-const swipeConfidenceThreshold = 10000;
-const swipePower = (offset: number, velocity: number) => {
-    return Math.abs(offset) * velocity;
-};
+type Direction = "left" | "right";
 
 const GalleryGridView = () => {
-    const [isOpen, setIsOpen] = useState(false);
-    const [width, setWidth] = useState(0);
-    const [windowWidth, setWindowWidth] = useState(0);
-    const [height, setHeight] = useState(0);
-    const [index, setIndex] = useState(0);
+    const [open, setOpen] = React.useState(false);
+    const [imageIndex, setImageIndex] = React.useState(5);
+    const [direction, setDirection] = React.useState<Direction | null>("right");
 
-    const currentIsFirst = index === 0;
-    const currentIsLast = index === gallery.length - 1;
+    const openImage = (imageIndex: number) => {
+        setImageIndex(imageIndex);
+        setOpen(true);
+        setDirection(null);
+    };
 
-    const changeIndex = (delta: number) => {
-        let newIndex = index + delta;
-        if (newIndex > gallery.length - 1) {
-            newIndex = gallery.length - 1;
-        } else if (newIndex < 0) {
-            newIndex = 0;
-        }
-        setIndex(newIndex);
+    const closeImage = () => setOpen(false);
+
+    const next = () => {
+        setImageIndex((prev) => (prev + 1) % gallery.length);
+        setDirection("right");
+    };
+    const prev = () => {
+        setImageIndex((prev) => (prev - 1 + gallery.length) % gallery.length);
+        setDirection("left");
     };
 
     useEffect(() => {
-        const onKeyDown = (e: KeyboardEvent) => {
-            if (!isOpen) return;
-
-            const { code } = e;
-            const rightKey = "ArrowRight";
-            const leftKey = "ArrowLeft";
-
-            if (code === rightKey) changeIndex(1);
-            else if (code === leftKey) changeIndex(-1);
+        // support arrow keys
+        const handleKeyDown = (event: KeyboardEvent) => {
+            if (event.key === "ArrowRight") {
+                next();
+            } else if (event.key === "ArrowLeft") {
+                prev();
+            }
         };
 
-        document.addEventListener("keydown", onKeyDown);
-        return () => {
-            document.removeEventListener("keydown", onKeyDown);
-        };
-    }, [isOpen, index]);
-
-    useEffect(() => {
-        const image = new Image();
-
-        const setDimensions = () => {
-            const ww = window.innerWidth;
-            const wh = window.innerHeight;
-            const iw = image.width;
-            const ih = image.height;
-
-            const scale = Math.min(ww / iw, wh / ih);
-
-            const w = iw * scale;
-            const h = ih * scale;
-
-            setWindowWidth(ww);
-            setWidth(w);
-            setHeight(h);
-        };
-
-        image.addEventListener("load", setDimensions);
-        window.addEventListener("resize", setDimensions);
-
-        image.src = gallery[index];
+        document.addEventListener("keydown", handleKeyDown);
 
         return () => {
-            image.removeEventListener("load", setDimensions);
-            window.addEventListener("resize", setDimensions);
+            document.removeEventListener("keydown", handleKeyDown);
         };
-    }, [index]);
+    }, []);
+
+    const toRight = direction === "right";
 
     return (
-        <div className="flex items-center justify-center bg-white">
-            <div className="flex flex-col items-center max-w-[80rem] w-full mx-6 md:mx-10 my-8">
-                <div className="grid grid-cols-2 gap-6 my-8 md:grid-cols-3">
-                    {gallery.map((src, i) => (
-                        <ImageView
-                            src={src}
-                            key={i}
-                            onClick={() => {
-                                setIndex(i);
-                                setIsOpen(true);
-                            }}
-                        />
-                    ))}
-                </div>
-                <Dialog open={isOpen} onClose={() => setIsOpen(false)} static>
-                    <AnimatePresence>
-                        {isOpen && (
-                            <motion.div
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                                className="fixed inset-0 z-50"
-                                transition={{
-                                    duration: 0.2,
-                                }}
+        <>
+            <div className="bg-white">
+                <div className="container grid grid-cols-2 px-3 mx-auto md:grid-cols-3">
+                    {gallery.map((image, index) => {
+                        return (
+                            <div
+                                key={image}
+                                className="p-3 transition cursor-pointer hover:scale-105"
+                                onClick={() => openImage(index)}
                             >
-                                <div className="fixed inset-0 bg-black">
-                                    <AnimatePresence>
-                                        <motion.div
-                                            className="fixed inset-0 flex items-center justify-center"
-                                            key={gallery[index]}
-                                            drag="x"
-                                            dragConstraints={{
-                                                left: 0,
-                                                right: 0,
-                                            }}
-                                            dragElastic={1}
-                                            onDragEnd={(
-                                                e,
-                                                { offset, velocity }
-                                            ) => {
-                                                const swipe = swipePower(
-                                                    offset.x,
-                                                    velocity.x
-                                                );
-
-                                                if (
-                                                    swipe <
-                                                    -swipeConfidenceThreshold
-                                                ) {
-                                                    changeIndex(1);
-                                                } else if (
-                                                    swipe >
-                                                    swipeConfidenceThreshold
-                                                ) {
-                                                    changeIndex(-1);
-                                                }
-                                            }}
-                                            transition={{
-                                                duration: 0.25,
-                                            }}
-                                            variants={{
-                                                initial: {
-                                                    opacity: 0,
-                                                },
-                                                animate: {
-                                                    opacity: 1,
-                                                },
-                                                exit: {
-                                                    opacity: 0,
-                                                },
-                                            }}
-                                            initial="initial"
-                                            animate="animate"
-                                            exit="exit"
-                                        >
-                                            <img
-                                                className="pointer-events-none"
-                                                src={gallery[index]}
-                                                width={width}
-                                                height={height}
-                                                alt="Image of cat(s)"
-                                            />
-                                        </motion.div>
-                                    </AnimatePresence>
-                                </div>
-                                <button
-                                    className="gallery__action-button top-2 left-4"
-                                    onClick={() => setIsOpen(false)}
-                                >
-                                    <HiOutlineX />
-                                </button>
-                                <button
-                                    className="transform -translate-y-1/2 gallery__action-button top-1/2 left-4"
-                                    disabled={currentIsFirst}
-                                    onClick={() => changeIndex(-1)}
-                                >
-                                    <HiOutlineChevronLeft />
-                                </button>
-                                <button
-                                    className="transform -translate-y-1/2 gallery__action-button top-1/2 right-4"
-                                    disabled={currentIsLast}
-                                    onClick={() => changeIndex(1)}
-                                >
-                                    <HiOutlineChevronRight />
-                                </button>
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
-                </Dialog>
+                                <img
+                                    src={image}
+                                    alt="image of cat(s)"
+                                    className="object-cover aspect-square"
+                                />
+                            </div>
+                        );
+                    })}
+                </div>
             </div>
-        </div>
+
+            <AnimatePresence>
+                {open && (
+                    <Dialog open={open} onClose={() => setOpen(false)} static>
+                        <Dialog.Panel
+                            className="fixed inset-0 z-50 bg-black/90"
+                            as={motion.div}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{
+                                duration: 0.1,
+                                ease: "easeInOut",
+                            }}
+                        >
+                            <div className="absolute z-20 top-8 right-8">
+                                <button
+                                    className="p-2 transition-colors rounded-full bg-white/50 hover:bg-white"
+                                    onClick={closeImage}
+                                >
+                                    <HiX className="text-4xl" />
+                                </button>
+                            </div>
+                            <div className="absolute inset-0 z-10 flex items-center justify-between p-8">
+                                <button
+                                    className="p-2 transition-colors rounded-full bg-white/50 hover:bg-white"
+                                    onClick={prev}
+                                >
+                                    <HiArrowLeft className="text-4xl" />
+                                </button>
+                                <button
+                                    className="p-2 transition-colors rounded-full bg-white/50 hover:bg-white"
+                                    onClick={next}
+                                >
+                                    <HiArrowRight className="text-4xl" />
+                                </button>
+                            </div>
+                            <AnimatePresence custom={direction}>
+                                <motion.img
+                                    key={imageIndex}
+                                    variants={variants}
+                                    initial="enter"
+                                    animate="center"
+                                    exit="exit"
+                                    custom={direction}
+                                    src={gallery[imageIndex]}
+                                    alt="image of cat(s)"
+                                    transition={{
+                                        duration: 0.5,
+                                        ease: "easeInOut",
+                                    }}
+                                    className="absolute object-contain w-full h-full aspect-square"
+                                />
+                            </AnimatePresence>
+                        </Dialog.Panel>
+                    </Dialog>
+                )}
+            </AnimatePresence>
+        </>
     );
+};
+
+const variants: Variants = {
+    enter: (direction: Direction) => ({
+        x: direction === "right" ? "100%" : direction === "left" ? "-100%" : 0,
+        opacity: 0,
+    }),
+    center: {
+        x: 0,
+        opacity: 1,
+    },
+    exit: (direction: Direction) => ({
+        x: direction === "right" ? "-100%" : direction === "left" ? "100%" : 0,
+        opacity: 0,
+    }),
 };
 
 export default GalleryGridView;
