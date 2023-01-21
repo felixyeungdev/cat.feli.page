@@ -80,7 +80,7 @@ const GalleryGridView = () => {
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             transition={{
-                                duration: 0.1,
+                                duration: 0.15,
                                 ease: "easeInOut",
                             }}
                         >
@@ -134,7 +134,7 @@ const GalleryGridView = () => {
 const variants: Variants = {
     enter: (direction: Direction) => ({
         x: direction === "right" ? "100%" : direction === "left" ? "-100%" : 0,
-        opacity: 0,
+        opacity: direction ? 0 : 1,
     }),
     center: {
         x: 0,
@@ -142,7 +142,7 @@ const variants: Variants = {
     },
     exit: (direction: Direction) => ({
         x: direction === "right" ? "-100%" : direction === "left" ? "100%" : 0,
-        opacity: 0,
+        opacity: direction ? 0 : 1,
     }),
 };
 
