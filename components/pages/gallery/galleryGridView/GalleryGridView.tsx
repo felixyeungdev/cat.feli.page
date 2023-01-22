@@ -5,6 +5,11 @@ import { Dialog } from "@headlessui/react";
 import { HiArrowLeft, HiArrowRight, HiX } from "react-icons/hi";
 import { AnimatePresence, motion, Variants } from "framer-motion";
 
+const swipeConfidenceThreshold = 10000;
+const swipePower = (offset: number, velocity: number) => {
+    return Math.abs(offset) * velocity;
+};
+
 type Direction = "left" | "right";
 
 const GalleryGridView = () => {
@@ -92,13 +97,21 @@ const GalleryGridView = () => {
                                     <HiX className="text-4xl" />
                                 </button>
                             </div>
-                            <div className="absolute inset-0 z-10 flex items-center justify-between p-8">
+                            <div
+                                className="absolute inset-y-0 left-0 z-10 items-center hidden p-8 cursor-pointer md:flex"
+                                onClick={prev}
+                            >
                                 <button
                                     className="p-2 transition-colors rounded-full bg-white/50 hover:bg-white"
                                     onClick={prev}
                                 >
                                     <HiArrowLeft className="text-4xl" />
                                 </button>
+                            </div>
+                            <div
+                                className="absolute inset-y-0 right-0 z-10 items-center hidden p-8 cursor-pointer md:flex"
+                                onClick={next}
+                            >
                                 <button
                                     className="p-2 transition-colors rounded-full bg-white/50 hover:bg-white"
                                     onClick={next}
@@ -113,9 +126,26 @@ const GalleryGridView = () => {
                                     initial="enter"
                                     animate="center"
                                     exit="exit"
+                                    whileDrag="dragging"
                                     custom={direction}
                                     src={gallery[imageIndex]}
                                     alt="image of cat(s)"
+                                    drag="x"
+                                    dragConstraints={{
+                                        left: 0,
+                                        right: 0,
+                                    }}
+                                    dragElastic={1}
+                                    onDragEnd={(_e, { offset, velocity }) => {
+                                        const swipe = swipePower(
+                                            offset.x,
+                                            velocity.x
+                                        );
+                                        if (swipe < -swipeConfidenceThreshold)
+                                            return next();
+                                        if (swipe > swipeConfidenceThreshold)
+                                            return prev();
+                                    }}
                                     transition={{
                                         duration: 0.5,
                                         ease: "easeInOut",
@@ -134,16 +164,22 @@ const GalleryGridView = () => {
 const variants: Variants = {
     enter: (direction: Direction) => ({
         x: direction === "right" ? "100%" : direction === "left" ? "-100%" : 0,
-        opacity: direction ? 0 : 1,
+        opacity: direction ? 0.5 : 1,
+        scale: 0.5,
     }),
     center: {
         x: 0,
         opacity: 1,
+        scale: 1,
     },
     exit: (direction: Direction) => ({
         x: direction === "right" ? "-100%" : direction === "left" ? "100%" : 0,
-        opacity: direction ? 0 : 1,
+        opacity: direction ? 0.5 : 1,
+        scale: 0.5,
     }),
+    dragging: {
+        scale: 0.9,
+    },
 };
 
 export default GalleryGridView;
