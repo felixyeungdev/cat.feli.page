@@ -27,7 +27,9 @@ const SimpleCatCard: React.FC<Props> = ({ cat }) => {
             <div className="py-6 md:mt-20">
                 <div className="mb-3 text-center">
                     <div className="text-base font-light">Meet</div>
-                    <div className="text-2xl font-semibold">{name}</div>
+                    <div className="text-2xl font-semibold font-display">
+                        {name}
+                    </div>
                 </div>
                 <div className="flex justify-center md:mb-3">
                     <Link
