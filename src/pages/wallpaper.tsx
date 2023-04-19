@@ -1,9 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
-import ActionButton from "~/components/common/ActionButton";
-import cats from "src/data/cats";
-import collage from "src/data/collage";
 import html2canvas from "html2canvas";
-import React, { useRef } from "react";
+import { useRef } from "react";
+import { _cats as cats } from "src/data/cats";
+import collage from "src/data/collage";
+import ActionButton from "~/components/common/ActionButton";
 
 const WallpaperPage = () => {
     const wallpaperRef = useRef<HTMLDivElement>();
