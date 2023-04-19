@@ -30,7 +30,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
     const cats = await getAllCats();
     return {
         props: { cats },
-        revalidate: 1,
+        revalidate: 60,
     };
 };
 

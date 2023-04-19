@@ -36,5 +36,8 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
         };
     }
 
-    return { props: { cat } };
+    return {
+        props: { cat },
+        revalidate: 60,
+    };
 };
