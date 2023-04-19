@@ -17,7 +17,7 @@ const HomePage: NextPage<Props> = ({ cats }) => {
         <>
             <PageTitle>Welcome</PageTitle>
             <WhiteToBlue />
-            <MeetTheCats cats={cats} />
+            <MeetTheCats cats={cats.filter((cat) => cat.showInMeetTheCats)} />
             <PurpleToBlue />
             <ViewTimeline />
             <BlueToWhite />

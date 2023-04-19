@@ -20,6 +20,7 @@ const catFields = groq`
   adopted,
   dateOfBirth,
   dateOfDeath,
+  showInMeetTheCats,
 `;
 
 const catSchema = z.object({
@@ -44,6 +45,7 @@ const catSchema = z.object({
     ),
     dateOfBirth: z.string(),
     dateOfDeath: z.string().nullable(),
+    showInMeetTheCats: z.boolean(),
 });
 
 export type Cat = z.infer<typeof catSchema>;

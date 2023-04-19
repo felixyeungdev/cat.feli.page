@@ -95,6 +95,13 @@ const cat = defineType({
             title: "Date of Death",
             type: "date",
         }),
+        defineField({
+            name: "showInMeetTheCats",
+            title: "Show in Meet the Cats",
+            type: "boolean",
+            initialValue: false,
+            validation: (rule) => rule.required(),
+        }),
     ],
 });
 
