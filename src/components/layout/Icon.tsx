@@ -1,4 +1,3 @@
-import React from "react";
 import { FaPaw } from "react-icons/fa";
 
 const SiteIcon = () => {

@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import React from "react";
+
 import { useWindowSize } from "react-use";
 
 interface Props {

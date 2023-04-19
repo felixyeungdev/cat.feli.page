@@ -1,5 +1,4 @@
 import LinkButton from "~/components/common/LinkButton";
-import React from "react";
 
 const ViewTimeline = () => {
     return (

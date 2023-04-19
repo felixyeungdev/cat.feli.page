@@ -1,7 +1,6 @@
-import CatPage from "~/components/pages/cat/CatPage";
-import cats, { CatData } from "src/data/cats";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import React from "react";
+import cats, { CatData } from "src/data/cats";
+import CatPage from "~/components/pages/cat/CatPage";
 
 interface Props {
     cat: CatData;

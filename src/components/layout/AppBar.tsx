@@ -1,6 +1,5 @@
-import { motion } from "framer-motion";
 import Link from "next/link";
-import React from "react";
+
 import { IconType } from "react-icons/lib";
 import SiteIcon from "./Icon";
 

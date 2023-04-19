@@ -1,5 +1,4 @@
-import { motion, TargetAndTransition } from "framer-motion";
-import React from "react";
+import { TargetAndTransition } from "framer-motion";
 
 const animate: TargetAndTransition = {
     scaleX: [1.4, 3.4, 4.4, 1.6, 4.0, 1.0, 2.5, 3.7, 1.1, 2.7, 4.8, 3.0],

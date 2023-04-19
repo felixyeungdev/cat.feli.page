@@ -1,5 +1,5 @@
 import cats from "src/data/cats";
-import React from "react";
+
 import SimpleCatCard from "./SimpleCatCard";
 
 const MeetTheCats = () => {

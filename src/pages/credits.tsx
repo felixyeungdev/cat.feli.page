@@ -1,5 +1,3 @@
-import React from "react";
-
 const FelixYeung = (
     <a href="https://felixyeung.com/" target="_blank" rel="noreferrer">
         Felix Yeung
