@@ -1,18 +1,17 @@
-import PageTitle from "~/components/common/PageTitle";
-import Typography from "~/components/common/Typography";
-import GreyToWhite from "~/components/design/wave/GreyToWhite";
-import WhiteToGrey from "~/components/design/wave/WhiteToGrey";
-import timeline from "src/data/timeline";
-import moment from "moment";
+import dayjs from "dayjs";
 import Link from "next/link";
 import React, { Fragment } from "react";
+import timeline from "src/data/timeline";
+import PageTitle from "~/components/common/PageTitle";
+import GreyToWhite from "~/components/design/wave/GreyToWhite";
+import WhiteToGrey from "~/components/design/wave/WhiteToGrey";
 
 const Sesame = <Link href="/about/sesame">Sesame</Link>;
 const Shiba = <Link href="/about/shiba">Shiba</Link>;
 const Simba = <Link href="/about/simba">Simba</Link>;
 const Caramel = <Link href="/about/caramel">Caramel</Link>;
 
-const Year: React.FC<{ date: moment.Moment }> = ({ date }) => {
+const Year: React.FC<{ date: dayjs.Dayjs }> = ({ date }) => {
     return (
         <div className="grid-cols-12 gap-8 md:grid">
             <div className="sticky col-span-12 top-8 md:col-span-3">
@@ -28,7 +27,7 @@ const Year: React.FC<{ date: moment.Moment }> = ({ date }) => {
     );
 };
 
-const Month: React.FC<{ date: moment.Moment }> = ({ date }) => {
+const Month: React.FC<{ date: dayjs.Dayjs }> = ({ date }) => {
     return (
         <div className="grid-cols-12 gap-8 md:grid">
             <div className="col-span-3">
@@ -44,7 +43,7 @@ const Month: React.FC<{ date: moment.Moment }> = ({ date }) => {
     );
 };
 
-const TimelineEvent: React.FC<{ date: moment.Moment; title: string }> = ({
+const TimelineEvent: React.FC<{ date: dayjs.Dayjs; title: string }> = ({
     date,
     title,
 }) => {
@@ -113,11 +112,9 @@ const TimelinePage = () => {
                             <div className="col-span-8"></div>
                         </div>
                         {timeline.map(({ date: d, title }, i) => {
-                            const date = moment(d);
+                            const date = dayjs(d);
                             const lastDate =
-                                i - 1 >= 0
-                                    ? moment(timeline[i - 1].date)
-                                    : null;
+                                i - 1 >= 0 ? dayjs(timeline[i - 1].date) : null;
                             const renderYear =
                                 lastDate?.format("YYYY") !==
                                 date.format("YYYY");

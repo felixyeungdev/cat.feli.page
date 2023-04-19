@@ -11,9 +11,9 @@
     "dependencies": {
         "@headlessui/react": "^1.7.14",
         "@tailwindcss/typography": "^0.5.9",
+        "dayjs": "^1.11.7",
         "framer-motion": "^10.12.4",
         "html2canvas": "^1.4.1",
-        "moment": "^2.29.4",
         "next": "^13.3.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",

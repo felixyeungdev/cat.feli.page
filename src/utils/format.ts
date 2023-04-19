@@ -1,7 +1,7 @@
-import moment from "moment";
+import dayjs from "dayjs";
 
 export const formatAge = (date: string) => {
-    const age = moment().diff(date, "years");
+    const age = dayjs().diff(date, "years");
     const s = addS(age);
     return `${age} year${s} old`;
 };

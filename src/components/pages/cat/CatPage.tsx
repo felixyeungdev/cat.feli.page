@@ -1,5 +1,4 @@
 /* eslint-disable @next/next/no-img-element */
-import moment from "moment";
 import { NextPage } from "next";
 import { CatData } from "src/data/cats";
 import PageHeadFrag from "~/components/common/PageHeadFrag";
@@ -9,6 +8,12 @@ import DataTile from "~/components/pages/cat/DataTile";
 import { FaBirthdayCake } from "react-icons/fa";
 import { HiEmojiSad, HiOutlineScale } from "react-icons/hi";
 import { formatAge } from "~/utils/format";
+
+import dayjs from "dayjs";
+import dayjsAdvancedFormatPlugin from "dayjs/plugin/advancedFormat";
+import dayjsLocalizedFormatPlugin from "dayjs/plugin/localizedFormat";
+dayjs.extend(dayjsAdvancedFormatPlugin);
+dayjs.extend(dayjsLocalizedFormatPlugin);
 
 const CatPage: NextPage<{ cat: CatData }> = ({ cat }) => {
     const {
@@ -28,7 +33,7 @@ const CatPage: NextPage<{ cat: CatData }> = ({ cat }) => {
         (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
     )[0];
 
-    const latestWeightDate = moment(latestWeight.date);
+    const latestWeightDate = dayjs(latestWeight.date);
 
     const avatarDiv = (
         <div className="flex items-center justify-center rounded-full h-[13rem] w-[13rem] bg-gradient-to-r from-blue-600 to-purple-600">
@@ -60,15 +65,15 @@ const CatPage: NextPage<{ cat: CatData }> = ({ cat }) => {
             <DataTile
                 Icon={FaBirthdayCake}
                 label="Birthday"
-                value={moment(birthday).format("LL")}
+                value={dayjs(birthday).format("LL")}
                 hint={!dateOfDeath && formatAge(birthday)}
             />
             {dateOfDeath && (
                 <DataTile
                     Icon={HiEmojiSad}
                     label="Date of Death"
-                    value={moment(dateOfDeath).format("LL")}
-                    hint={`${moment(birthday).diff(
+                    value={dayjs(dateOfDeath).format("LL")}
+                    hint={`${dayjs(birthday).diff(
                         dateOfDeath,
                         "years"
                     )} years old`}
@@ -80,7 +85,7 @@ const CatPage: NextPage<{ cat: CatData }> = ({ cat }) => {
                 value={`${latestWeight.value.toFixed(2)}kg`}
                 hint={`${latestWeightDate.format(
                     "LL"
-                )} (${latestWeightDate.fromNow()})`}
+                )} (${latestWeightDate.format()})`}
             />
         </div>
     );
