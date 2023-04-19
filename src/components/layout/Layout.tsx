@@ -1,15 +1,11 @@
-import React from "react";
+import { FC, PropsWithChildren } from "react";
 import PageHead from "~/components/common/PageHead";
 import useIsLoading from "~/hooks/useIsLoading";
 import AppBar from "./AppBar";
 import Footer from "./Footer";
 import Loading from "./Loading";
 
-interface Props {
-    children: React.ReactNode;
-}
-
-const Layout: React.FC<Props> = ({ children }) => {
+const Layout: FC<PropsWithChildren> = ({ children }) => {
     const loading = useIsLoading();
 
     return (
