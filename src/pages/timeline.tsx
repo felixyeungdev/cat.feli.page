@@ -1,15 +1,23 @@
 import dayjs from "dayjs";
+import { GetStaticProps, NextPage } from "next";
 import Link from "next/link";
-import React, { Fragment } from "react";
-import timeline from "src/data/timeline";
+import React, { FC, Fragment, ReactNode } from "react";
 import PageTitle from "~/components/common/PageTitle";
 import GreyToWhite from "~/components/design/wave/GreyToWhite";
 import WhiteToGrey from "~/components/design/wave/WhiteToGrey";
+import { Cat, Timeline, getAllTimelineEvents } from "~/lib/sanity.client";
 
 const Sesame = <Link href="/about/sesame">Sesame</Link>;
 const Shiba = <Link href="/about/shiba">Shiba</Link>;
 const Simba = <Link href="/about/simba">Simba</Link>;
 const Caramel = <Link href="/about/caramel">Caramel</Link>;
+
+const CatLink: FC<{
+    cat: Pick<Cat, "name" | "slug">;
+}> = ({ cat }) => {
+    const { name, slug } = cat;
+    return <Link href={`/about/${slug}`}>{name}</Link>;
+};
 
 const Year: React.FC<{ date: dayjs.Dayjs }> = ({ date }) => {
     return (
@@ -43,7 +51,7 @@ const Month: React.FC<{ date: dayjs.Dayjs }> = ({ date }) => {
     );
 };
 
-const TimelineEvent: React.FC<{ date: dayjs.Dayjs; title: string }> = ({
+const TimelineEvent: React.FC<{ date: dayjs.Dayjs; title: ReactNode }> = ({
     date,
     title,
 }) => {
@@ -62,41 +70,16 @@ const TimelineEvent: React.FC<{ date: dayjs.Dayjs; title: string }> = ({
             <div className="flex justify-center col-span-1">
                 <div className="h-full max-w-[0.5rem] flex-grow bg-gradient-to-r group-hover:scale-x-150 from-blue-600 to bg-purple-600 transition-transform"></div>
             </div>
-            <div className="col-span-8 md:py-1.5">
-                <RichText text={title} />
-            </div>
+            <div className="col-span-8 md:py-1.5 prose max-w-none">{title}</div>
         </div>
     );
 };
 
-const RichText: React.FC<{ text: string }> = ({ text }) => {
-    let parts: React.ReactNodeArray = text
-        .split(" ")
-        .map((e, i, a) => (a.length - 1 !== i ? [e, " "] : [e]))
-        .flat()
-        .map((e) =>
-            e.split(",").map((e, i, a) => (a.length - 1 !== i ? [e, ","] : [e]))
-        )
-        .flat()
-        .flat();
-    parts = parts.map((part) => (part === "Sesame" ? Sesame : part));
-    parts = parts.map((part) => (part === "Shiba" ? Shiba : part));
-    parts = parts.map((part) => (part === "Simba" ? Simba : part));
-    parts = parts.map((part) => (part === "Caramel" ? Caramel : part));
+interface Props {
+    timeline: Timeline[];
+}
 
-    return (
-        <div className="prose max-w-none">
-            {parts.map((part, i, arr) => (
-                <>
-                    {arr[i + 1] === " " ? " " : ""}
-                    {part}
-                </>
-            ))}
-        </div>
-    );
-};
-
-const TimelinePage = () => {
+const TimelinePage: NextPage<Props> = ({ timeline }) => {
     return (
         <>
             <PageTitle>Timeline</PageTitle>
@@ -111,7 +94,7 @@ const TimelinePage = () => {
                             </div>
                             <div className="col-span-8"></div>
                         </div>
-                        {timeline.map(({ date: d, title }, i) => {
+                        {timeline.map(({ date: d, action, cats }, i) => {
                             const date = dayjs(d);
                             const lastDate =
                                 i - 1 >= 0 ? dayjs(timeline[i - 1].date) : null;
@@ -125,7 +108,29 @@ const TimelinePage = () => {
                                 <Fragment key={i}>
                                     {renderYear && <Year {...{ date }} />}
                                     {renderMonth && <Month {...{ date }} />}
-                                    <TimelineEvent {...{ date, title }} />
+                                    <TimelineEvent
+                                        {...{
+                                            date,
+                                            title: (
+                                                <>
+                                                    {cats.map((cat, index) => (
+                                                        <>
+                                                            <CatLink
+                                                                key={cat.slug}
+                                                                cat={cat}
+                                                            />
+                                                            {index <
+                                                                cats.length -
+                                                                    1 && (
+                                                                <span>, </span>
+                                                            )}
+                                                        </>
+                                                    ))}{" "}
+                                                    {action}
+                                                </>
+                                            ),
+                                        }}
+                                    />
                                 </Fragment>
                             );
                         })}
@@ -142,6 +147,16 @@ const TimelinePage = () => {
             <GreyToWhite />
         </>
     );
+};
+
+export const getStaticProps: GetStaticProps<Props> = async () => {
+    const timeline = await getAllTimelineEvents();
+
+    return {
+        props: {
+            timeline,
+        },
+    };
 };
 
 export default TimelinePage;

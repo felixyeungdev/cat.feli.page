@@ -50,6 +50,28 @@ const catSchema = z.object({
 
 export type Cat = z.infer<typeof catSchema>;
 
+const timelineFields = groq`
+    cats[]->{name, "slug": slug.current},
+    action,
+    date,
+`;
+
+const timelineSchema = z.object({
+    cats: z
+        .array(
+            z.object({
+                name: z.string(),
+                slug: z.string(),
+            })
+        )
+        .nullable()
+        .transform((cats) => cats ?? []),
+    action: z.string(),
+    date: z.string(),
+});
+
+export type Timeline = z.infer<typeof timelineSchema>;
+
 export const getAllCats = async () => {
     const data = await client.fetch(
         groq`*[_type == "cat"]{
@@ -71,4 +93,15 @@ export const getCat = async (slug: string) => {
     );
 
     return catSchema.parse(data);
+};
+
+export const getAllTimelineEvents = async () => {
+    const data = await client.fetch(
+        groq`*[_type == "timeline"] | order(date desc){
+          ${timelineFields}
+        }
+        `
+    );
+
+    return z.array(timelineSchema).parse(data);
 };

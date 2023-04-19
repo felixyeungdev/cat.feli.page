@@ -97,4 +97,7 @@ const timeline = [
     })
     .reverse();
 
-export default timeline;
+/**
+ * @deprecated
+ */
+export const _timeline = timeline;
