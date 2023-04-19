@@ -1,9 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
-import LinkButton from "components/common/LinkButton";
-import PageHeadFrag from "components/common/PageHeadFrag";
-import Typography from "components/common/Typography";
-import PurpleToWhite from "components/design/curves/PurpleToWhite";
-import WhiteToBlue from "components/design/curves/WhiteToBlue";
+import LinkButton from "~/components/common/LinkButton";
+import PageHeadFrag from "~/components/common/PageHeadFrag";
+import Typography from "~/components/common/Typography";
+import PurpleToWhite from "~/components/design/curves/PurpleToWhite";
+import WhiteToBlue from "~/components/design/curves/WhiteToBlue";
 import React from "react";
 import { HiOutlineSparkles } from "react-icons/hi";
 

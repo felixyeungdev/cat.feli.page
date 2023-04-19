@@ -1,8 +1,8 @@
-import PageTitle from "components/common/PageTitle";
-import Typography from "components/common/Typography";
-import GreyToWhite from "components/design/wave/GreyToWhite";
-import WhiteToGrey from "components/design/wave/WhiteToGrey";
-import timeline from "data/timeline";
+import PageTitle from "~/components/common/PageTitle";
+import Typography from "~/components/common/Typography";
+import GreyToWhite from "~/components/design/wave/GreyToWhite";
+import WhiteToGrey from "~/components/design/wave/WhiteToGrey";
+import timeline from "src/data/timeline";
 import moment from "moment";
 import Link from "next/link";
 import React, { Fragment } from "react";

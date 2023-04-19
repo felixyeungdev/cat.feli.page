@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { gallery } from "data/gallery";
+import { gallery } from "src/data/gallery";
 import React, { useEffect } from "react";
 import { Dialog } from "@headlessui/react";
 import { HiArrowLeft, HiArrowRight, HiX } from "react-icons/hi";

@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import cats from "data/cats";
+import cats from "src/data/cats";
 import React from "react";
 import Link from "next/link";
 import { FaPaw } from "react-icons/fa";

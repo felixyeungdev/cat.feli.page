@@ -97,9 +97,8 @@ She used to be very happy, until her disease caught onto her.
 She lost her battle, and is now forever asleep.
 Caramel was my cat, and we miss her very much.
 
-
-
 ## Unused
+
 He jumps on my head and walks across my face, and throws me around, and makes me laugh at how stupid he is.
 He'll jump on me when I'm watching a movie, making me pause the movie.
 He'll jump on me when I'm playing a video game, making me pause the game.

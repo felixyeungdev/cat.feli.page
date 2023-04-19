@@ -1,7 +1,7 @@
 import React from "react";
-import "styles/global.css";
+import "~/styles/global.css";
 import { AppProps } from "next/dist/shared/lib/router/router";
-import Layout from "components/layout/Layout";
+import Layout from "~/components/layout/Layout";
 
 function MyApp({ Component, pageProps }: AppProps) {
     return (
