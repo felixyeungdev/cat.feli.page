@@ -89,4 +89,4 @@ const cats: {
     },
 };
 
-export default cats;
+export const _cats = cats;

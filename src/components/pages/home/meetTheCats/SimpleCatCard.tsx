@@ -1,16 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
-import cats from "src/data/cats";
 
 import Link from "next/link";
 import { FaPaw } from "react-icons/fa";
+import { Cat } from "~/lib/sanity.client";
 
 interface Props {
-    cat: string;
+    cat: Pick<Cat, "name" | "avatar" | "slug">;
 }
 
 const SimpleCatCard: React.FC<Props> = ({ cat }) => {
-    const catData = cats[cat];
-    const { name, avatar, birthday } = catData;
+    const { name, avatar, slug } = cat;
     return (
         <div className="relative z-10 flex justify-around flex-grow transition-shadow bg-white shadow-xl md:mt-12 group rounded-xl md:block even:flex-row-reverse hover:shadow-2xl">
             <div className="flex items-center justify-center md:w-full md:absolute md:-top-12">
@@ -33,7 +32,7 @@ const SimpleCatCard: React.FC<Props> = ({ cat }) => {
                 </div>
                 <div className="flex justify-center md:mb-3">
                     <Link
-                        href={`/about/${cat}`}
+                        href={`/about/${slug}`}
                         className="px-4 py-2 rounded-md bg-gradient-to-b from-blue-600 to-[#4338CA] text-gray-50 flex items-center space-x-2 hover:scale-105 active:scale-95 transition-transform group hover:shadow"
                     >
                         <FaPaw className="transition-transform group-hover:-rotate-6 group-active:rotate-6" />

@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
+import { PortableText } from "@portabletext/react";
 import { NextPage } from "next";
-import { CatData } from "src/data/cats";
 import PageHeadFrag from "~/components/common/PageHeadFrag";
 import Typography from "~/components/common/Typography";
 import DataTile from "~/components/pages/cat/DataTile";
@@ -12,24 +12,23 @@ import { formatAge } from "~/utils/format";
 import dayjs from "dayjs";
 import dayjsAdvancedFormatPlugin from "dayjs/plugin/advancedFormat";
 import dayjsLocalizedFormatPlugin from "dayjs/plugin/localizedFormat";
+import { Cat } from "~/lib/sanity.client";
 dayjs.extend(dayjsAdvancedFormatPlugin);
 dayjs.extend(dayjsLocalizedFormatPlugin);
 
-const CatPage: NextPage<{ cat: CatData }> = ({ cat }) => {
+const CatPage: NextPage<{ cat: Cat }> = ({ cat }) => {
     const {
         name,
         avatar,
-        birthday,
+        dateOfBirth,
         dateOfDeath,
-        weight,
-        description,
-        meetTheCats,
+        measurements,
+        biography,
         favouriteToys,
-        adopted,
     } = cat;
 
     // sort weight by descending order and select first
-    const latestWeight = weight.sort(
+    const latestWeight = measurements.sort(
         (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
     )[0];
 
@@ -56,7 +55,7 @@ const CatPage: NextPage<{ cat: CatData }> = ({ cat }) => {
     const whoIsThisDiv = (
         <div className="mt-3 space-y-1 text-lg leading-7 text-center md:text-left">
             <Typography.h2>{"Who's this?"}</Typography.h2>
-            <p>{description}</p>
+            <PortableText value={biography} />
         </div>
     );
 
@@ -65,15 +64,15 @@ const CatPage: NextPage<{ cat: CatData }> = ({ cat }) => {
             <DataTile
                 Icon={FaBirthdayCake}
                 label="Birthday"
-                value={dayjs(birthday).format("LL")}
-                hint={!dateOfDeath && formatAge(birthday)}
+                value={dayjs(dateOfBirth).format("LL")}
+                hint={!dateOfDeath && formatAge(dateOfBirth)}
             />
             {dateOfDeath && (
                 <DataTile
                     Icon={HiEmojiSad}
                     label="Date of Death"
                     value={dayjs(dateOfDeath).format("LL")}
-                    hint={`${dayjs(birthday).diff(
+                    hint={`${dayjs(dateOfBirth).diff(
                         dateOfDeath,
                         "years"
                     )} years old`}
@@ -97,7 +96,7 @@ const CatPage: NextPage<{ cat: CatData }> = ({ cat }) => {
             </Typography.h2>
             <ul className="list-inside md:list-disc">
                 {favouriteToys.map((toy, i) => (
-                    <li key={i}>{toy}</li>
+                    <li key={toy.slug}>{toy.name}</li>
                 ))}
             </ul>
         </div>

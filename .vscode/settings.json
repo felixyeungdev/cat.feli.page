@@ -14,5 +14,5 @@
         "**/node_modules": true
     },
 
-    "cSpell.words": ["Catsss"]
+    "cSpell.words": ["Catsss", "groq"]
 }

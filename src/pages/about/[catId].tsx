@@ -1,12 +1,12 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import cats, { CatData } from "src/data/cats";
 import CatPage from "~/components/pages/cat/CatPage";
+import { Cat, getAllCats, getCat } from "~/lib/sanity.client";
 
 interface Props {
-    cat: CatData;
+    cat: Cat;
 }
 
-const SesamePage: NextPage<Props> = ({ cat }) => {
+const CatAboutPage: NextPage<Props> = ({ cat }) => {
     return (
         <>
             <CatPage cat={cat} />
@@ -14,13 +14,13 @@ const SesamePage: NextPage<Props> = ({ cat }) => {
     );
 };
 
-export default SesamePage;
+export default CatAboutPage;
 
 export const getStaticPaths: GetStaticPaths = async (context) => {
+    const cats = await getAllCats();
+
     return {
-        paths: Object.keys(cats).map((catId) => ({
-            params: { catId },
-        })),
+        paths: cats.map((cat) => ({ params: { catId: cat.slug } })),
         fallback: false,
     };
 };
@@ -28,12 +28,13 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
 export const getStaticProps: GetStaticProps<Props> = async (context) => {
     const catId = context.params.catId?.toString();
 
-    const cat = cats[catId];
+    const cat = await getCat(catId);
 
-    if (!cat)
+    if (!cat) {
         return {
             notFound: true,
         };
+    }
 
     return { props: { cat } };
 };
