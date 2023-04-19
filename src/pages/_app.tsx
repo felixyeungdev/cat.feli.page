@@ -1,4 +1,4 @@
-import { AppProps } from "next/dist/shared/lib/router/router";
+import { AppProps } from "next/app";
 import Layout from "~/components/layout/Layout";
 import "~/styles/global.css";
 
