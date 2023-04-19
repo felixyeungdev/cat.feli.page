@@ -1,3 +1,18 @@
 {
+    // Foramttign with Prettier
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+
+    // Auto fix on save
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true,
+        "source.organizeImports": true
+    },
+
+    // Hide node_modules
+    "files.exclude": {
+        "**/node_modules": true
+    },
+
     "cSpell.words": ["Catsss"]
 }
