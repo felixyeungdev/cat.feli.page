@@ -1,3 +1,4 @@
+import { GetStaticProps } from "next";
 import PageTitle from "~/components/common/PageTitle";
 import BlueToWhite from "~/components/design/curves/BlueToWhite";
 import PurpleToBlue from "~/components/design/curves/PurpleToBlue";
@@ -18,6 +19,14 @@ const HomePage = () => {
             <FavouriteToys />
         </>
     );
+};
+
+export const getStaticProps: GetStaticProps = async () => {
+    console.log({ data: null });
+    return {
+        props: {},
+        revalidate: 1,
+    };
 };
 
 export default HomePage;
