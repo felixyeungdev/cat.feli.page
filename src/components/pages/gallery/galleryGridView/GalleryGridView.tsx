@@ -1,9 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
-import { gallery } from "src/data/gallery";
-import React, { useEffect } from "react";
 import { Dialog } from "@headlessui/react";
+import { AnimatePresence, Variants, motion } from "framer-motion";
+import React, { FC, useEffect } from "react";
 import { HiArrowLeft, HiArrowRight, HiX } from "react-icons/hi";
-import { AnimatePresence, motion, Variants } from "framer-motion";
+import { GalleryItem } from "~/lib/sanity.client";
 
 const swipeConfidenceThreshold = 10000;
 const swipePower = (offset: number, velocity: number) => {
@@ -12,7 +12,9 @@ const swipePower = (offset: number, velocity: number) => {
 
 type Direction = "left" | "right";
 
-const GalleryGridView = () => {
+const GalleryGridView: FC<{
+    gallery: GalleryItem[];
+}> = ({ gallery }) => {
     const [open, setOpen] = React.useState(false);
     const [imageIndex, setImageIndex] = React.useState(5);
     const [direction, setDirection] = React.useState<Direction | null>("right");
@@ -60,13 +62,14 @@ const GalleryGridView = () => {
                     {gallery.map((image, index) => {
                         return (
                             <div
-                                key={image}
+                                key={index}
                                 className="p-3 transition cursor-pointer hover:scale-105"
                                 onClick={() => openImage(index)}
                             >
                                 <img
-                                    src={image}
-                                    alt="image of cat(s)"
+                                    src={image.image}
+                                    alt={image.description}
+                                    title={image.description}
                                     className="object-cover aspect-square"
                                 />
                             </div>
@@ -128,8 +131,9 @@ const GalleryGridView = () => {
                                     exit="exit"
                                     whileDrag="dragging"
                                     custom={direction}
-                                    src={gallery[imageIndex]}
-                                    alt="image of cat(s)"
+                                    src={gallery[imageIndex].image}
+                                    alt={gallery[imageIndex].description}
+                                    title={gallery[imageIndex].description}
                                     drag="x"
                                     dragConstraints={{
                                         left: 0,

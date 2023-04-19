@@ -72,6 +72,30 @@ const timelineSchema = z.object({
 
 export type Timeline = z.infer<typeof timelineSchema>;
 
+const galleryItemFields = groq`
+    cats[]->{name, "slug": slug.current},
+    "image": image.asset->url,
+    description,
+    date,
+`;
+
+const galleryItemSchema = z.object({
+    cats: z
+        .array(
+            z.object({
+                name: z.string(),
+                slug: z.string(),
+            })
+        )
+        .nullable()
+        .transform((cats) => cats ?? []),
+    image: z.string(),
+    description: z.string().nullable(),
+    date: z.string().nullable(),
+});
+
+export type GalleryItem = z.infer<typeof galleryItemSchema>;
+
 export const getAllCats = async () => {
     const data = await client.fetch(
         groq`*[_type == "cat"]{
@@ -104,4 +128,15 @@ export const getAllTimelineEvents = async () => {
     );
 
     return z.array(timelineSchema).parse(data);
+};
+
+export const getAllGalleryItems = async () => {
+    const data = await client.fetch(
+        groq`*[_type == "gallery"] | order(date desc){
+          ${galleryItemFields}
+        }
+        `
+    );
+
+    return z.array(galleryItemSchema).parse(data);
 };
