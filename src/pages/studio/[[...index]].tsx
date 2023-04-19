@@ -1,5 +1,6 @@
 // from https://github.com/sanity-io/nextjs-blog-cms-sanity-v3
 
+import { NextPage } from "next";
 import { NextStudio } from "next-sanity/studio";
 import { NextStudioHead } from "next-sanity/studio/head";
 import Head from "next/head";
@@ -11,7 +12,7 @@ const GlobalStyle = createGlobalStyle(({ theme }) => ({
     html: { backgroundColor: theme.sanity.color.base.bg },
 }));
 
-export default function StudioPage() {
+const StudioPage: NextPage = () => {
     return (
         <>
             <Head>
@@ -26,4 +27,6 @@ export default function StudioPage() {
             </NextStudio>
         </>
     );
-}
+};
+
+export default StudioPage;
