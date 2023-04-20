@@ -12,6 +12,7 @@ import { formatAge } from "~/utils/format";
 import dayjs from "dayjs";
 import dayjsAdvancedFormatPlugin from "dayjs/plugin/advancedFormat";
 import dayjsLocalizedFormatPlugin from "dayjs/plugin/localizedFormat";
+import Image from "next/image";
 import { Cat } from "~/lib/sanity.client";
 dayjs.extend(dayjsAdvancedFormatPlugin);
 dayjs.extend(dayjsLocalizedFormatPlugin);
@@ -36,12 +37,14 @@ const CatPage: NextPage<{ cat: Cat }> = ({ cat }) => {
 
     const avatarDiv = (
         <div className="flex items-center justify-center rounded-full h-[13rem] w-[13rem] bg-gradient-to-r from-blue-600 to-purple-600">
-            <img
-                src={avatar}
-                height={256}
-                width={256}
-                className="w-48 h-48 rounded-full shadow-md"
-                alt={`${name}'s avatar`}
+            <Image
+                className="w-48 h-48 rounded-full transition-transform group-hover:scale-110"
+                src={avatar.url}
+                alt={`Picture of ${name}`}
+                blurDataURL={avatar.metadata.lqip}
+                placeholder="blur"
+                width={avatar.metadata.dimensions.width}
+                height={avatar.metadata.dimensions.height}
             />
         </div>
     );
