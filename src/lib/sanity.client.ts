@@ -9,10 +9,36 @@ export const client = createClient({
     useCdn: env.NODE_ENV === "production",
 });
 
+const imageAssetFields = groq`
+    _id,
+    url,
+    metadata {
+        dimensions,
+        palette,
+        lqip
+    }
+`;
+
+const imageAssetSchema = z.object({
+    _id: z.string(),
+    url: z.string(),
+    metadata: z.object({
+        dimensions: z.object({
+            aspectRatio: z.number(),
+            height: z.number(),
+            width: z.number(),
+        }),
+        palette: z.object({}),
+        lqip: z.string(),
+    }),
+});
+
 const catFields = groq`
   name,
   "slug": slug.current,
-  "avatar": avatar.asset->url,
+  "avatar": avatar.asset->{
+    ${imageAssetFields}
+  },
   favouriteToys[]->{name, "slug": slug.current},
   biography,
   measurements,
@@ -26,7 +52,7 @@ const catFields = groq`
 const catSchema = z.object({
     name: z.string(),
     slug: z.string(),
-    avatar: z.string(),
+    avatar: imageAssetSchema,
     favouriteToys: z.array(
         z.object({
             name: z.string(),
@@ -74,7 +100,9 @@ export type Timeline = z.infer<typeof timelineSchema>;
 
 const galleryItemFields = groq`
     cats[]->{name, "slug": slug.current},
-    "image": image.asset->url,
+    "image": image.asset->{
+        ${imageAssetFields}
+    },
     description,
     date,
 `;
@@ -89,7 +117,7 @@ const galleryItemSchema = z.object({
         )
         .nullable()
         .transform((cats) => cats ?? []),
-    image: z.string(),
+    image: imageAssetSchema,
     description: z.string().nullable(),
     date: z.string().nullable(),
 });

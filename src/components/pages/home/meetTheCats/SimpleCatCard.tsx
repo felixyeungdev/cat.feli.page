@@ -1,5 +1,4 @@
-/* eslint-disable @next/next/no-img-element */
-
+import Image from "next/image";
 import Link from "next/link";
 import { FaPaw } from "react-icons/fa";
 import { Cat } from "~/lib/sanity.client";
@@ -14,12 +13,14 @@ const SimpleCatCard: React.FC<Props> = ({ cat }) => {
         <div className="relative z-10 flex justify-around flex-grow transition-shadow bg-white shadow-xl md:mt-12 group rounded-xl md:block even:flex-row-reverse hover:shadow-2xl">
             <div className="flex items-center justify-center md:w-full md:absolute md:-top-12">
                 <div className="w-32 h-32 my-6 overflow-hidden rounded-full shadow-md md:my-0">
-                    <img
+                    <Image
                         className="w-32 h-32 transition-transform group-hover:scale-110"
-                        src={avatar}
-                        width={96}
-                        height={96}
+                        src={avatar.url}
                         alt={`Picture of ${name}`}
+                        blurDataURL={avatar.metadata.lqip}
+                        placeholder="blur"
+                        width={avatar.metadata.dimensions.width}
+                        height={avatar.metadata.dimensions.height}
                     />
                 </div>
             </div>

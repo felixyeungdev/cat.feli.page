@@ -1,6 +1,6 @@
-/* eslint-disable @next/next/no-img-element */
 import { Dialog } from "@headlessui/react";
 import { AnimatePresence, Variants, motion } from "framer-motion";
+import Image from "next/image";
 import React, { FC, useEffect } from "react";
 import { HiArrowLeft, HiArrowRight, HiX } from "react-icons/hi";
 import { GalleryItem } from "~/lib/sanity.client";
@@ -55,22 +55,30 @@ const GalleryGridView: FC<{
 
     const toRight = direction === "right";
 
+    const currentImage = gallery[imageIndex];
+
     return (
         <>
             <div className="bg-white">
                 <div className="container grid grid-cols-2 px-3 mx-auto md:grid-cols-3">
-                    {gallery.map((image, index) => {
+                    {gallery.map((galleryItem, index) => {
+                        const { description, image } = galleryItem;
                         return (
                             <div
                                 key={index}
                                 className="p-3 transition cursor-pointer hover:scale-105"
                                 onClick={() => openImage(index)}
                             >
-                                <img
-                                    src={image.image}
-                                    alt={image.description}
-                                    title={image.description}
+                                <Image
+                                    src={image.url}
+                                    alt={description}
+                                    title={description}
                                     className="object-cover aspect-square"
+                                    loading="lazy"
+                                    blurDataURL={image.metadata.lqip}
+                                    placeholder="blur"
+                                    width={image.metadata.dimensions.width}
+                                    height={image.metadata.dimensions.height}
                                 />
                             </div>
                         );
@@ -131,9 +139,9 @@ const GalleryGridView: FC<{
                                     exit="exit"
                                     whileDrag="dragging"
                                     custom={direction}
-                                    src={gallery[imageIndex].image}
-                                    alt={gallery[imageIndex].description}
-                                    title={gallery[imageIndex].description}
+                                    src={currentImage.image.url}
+                                    alt={currentImage.description}
+                                    title={currentImage.description}
                                     drag="x"
                                     dragConstraints={{
                                         left: 0,
