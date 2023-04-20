@@ -90,10 +90,13 @@ const GalleryGridView: FC<{
                 {open && (
                     <Dialog open={open} onClose={() => setOpen(false)} static>
                         <Dialog.Panel
-                            className="fixed inset-0 z-50 bg-black/90"
+                            className="fixed inset-0 z-50"
                             as={motion.div}
                             initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
+                            animate={{
+                                opacity: 1,
+                                backgroundColor: `${currentImage.image.metadata.palette.darkMuted.background}EE`,
+                            }}
                             exit={{ opacity: 0 }}
                             transition={{
                                 duration: 0.15,

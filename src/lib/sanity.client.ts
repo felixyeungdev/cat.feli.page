@@ -9,6 +9,25 @@ export const client = createClient({
     useCdn: env.NODE_ENV === "production",
 });
 
+const sanityImagePaletteSwatch = z.object({
+    _type: z.literal("sanity.imagePaletteSwatch"),
+    background: z.string(),
+    foreground: z.string(),
+    population: z.number(),
+    title: z.string(),
+});
+
+const sanityImagePalette = z.object({
+    _type: z.literal("sanity.imagePalette"),
+    darkMuted: sanityImagePaletteSwatch,
+    darkVibrant: sanityImagePaletteSwatch,
+    dominant: sanityImagePaletteSwatch,
+    lightMuted: sanityImagePaletteSwatch,
+    lightVibrant: sanityImagePaletteSwatch,
+    muted: sanityImagePaletteSwatch,
+    vibrant: sanityImagePaletteSwatch,
+});
+
 const imageAssetFields = groq`
     _id,
     url,
@@ -28,7 +47,7 @@ const imageAssetSchema = z.object({
             height: z.number(),
             width: z.number(),
         }),
-        palette: z.object({}),
+        palette: sanityImagePalette,
         lqip: z.string(),
     }),
 });
