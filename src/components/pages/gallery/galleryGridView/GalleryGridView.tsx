@@ -1,7 +1,7 @@
 import { Dialog } from "@headlessui/react";
 import { AnimatePresence, Variants, motion } from "framer-motion";
 import Image from "next/image";
-import React, { FC, useEffect } from "react";
+import React, { FC, useCallback, useEffect } from "react";
 import { Button } from "react-aria-components";
 import { HiArrowLeft, HiArrowRight, HiX } from "react-icons/hi";
 import { GalleryItem } from "~/lib/cms/types";
@@ -28,14 +28,15 @@ const GalleryGridView: FC<{
 
     const closeImage = () => setOpen(false);
 
-    const next = () => {
+    const next = useCallback(() => {
         setImageIndex((prev) => (prev + 1) % gallery.length);
         setDirection("right");
-    };
-    const prev = () => {
+    }, [gallery.length]);
+
+    const prev = useCallback(() => {
         setImageIndex((prev) => (prev - 1 + gallery.length) % gallery.length);
         setDirection("left");
-    };
+    }, [gallery.length]);
 
     useEffect(() => {
         // support arrow keys
@@ -52,7 +53,7 @@ const GalleryGridView: FC<{
         return () => {
             document.removeEventListener("keydown", handleKeyDown);
         };
-    }, []);
+    }, [next, prev]);
 
     const toRight = direction === "right";
 
