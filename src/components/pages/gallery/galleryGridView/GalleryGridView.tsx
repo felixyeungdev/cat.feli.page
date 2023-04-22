@@ -4,7 +4,7 @@ import Image from "next/image";
 import React, { FC, useEffect } from "react";
 import { Button } from "react-aria-components";
 import { HiArrowLeft, HiArrowRight, HiX } from "react-icons/hi";
-import { GalleryItem } from "~/lib/cms/client";
+import { GalleryItem } from "~/lib/cms/types";
 
 const swipeConfidenceThreshold = 10000;
 const swipePower = (offset: number, velocity: number) => {
@@ -127,6 +127,11 @@ const GalleryGridView: FC<{
                                 >
                                     <HiArrowRight className="text-3xl" />
                                 </Button>
+                            </div>
+                            <div className="absolute inset-x-0 bottom-0 z-10 items-center p-8 cursor-pointer flex justify-center">
+                                <span className="bg-black/75 px-2 py-1 rounded text-white">
+                                    {currentImage.description}
+                                </span>
                             </div>
                             <AnimatePresence custom={direction}>
                                 <motion.img
