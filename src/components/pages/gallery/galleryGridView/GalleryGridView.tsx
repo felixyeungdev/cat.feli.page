@@ -2,6 +2,7 @@ import { Dialog } from "@headlessui/react";
 import { AnimatePresence, Variants, motion } from "framer-motion";
 import Image from "next/image";
 import React, { FC, useEffect } from "react";
+import { Button } from "react-aria-components";
 import { HiArrowLeft, HiArrowRight, HiX } from "react-icons/hi";
 import { GalleryItem } from "~/lib/sanity.client";
 
@@ -104,34 +105,28 @@ const GalleryGridView: FC<{
                             }}
                         >
                             <div className="absolute z-20 top-8 right-8">
-                                <button
+                                <Button
                                     className="p-2 transition-colors rounded-full bg-white/50 hover:bg-white"
-                                    onClick={closeImage}
+                                    onPress={closeImage}
                                 >
-                                    <HiX className="text-4xl" />
-                                </button>
+                                    <HiX className="text-3xl" />
+                                </Button>
                             </div>
-                            <div
-                                className="absolute inset-y-0 left-0 z-10 items-center hidden p-8 cursor-pointer md:flex"
-                                onClick={prev}
-                            >
-                                <button
+                            <div className="absolute inset-y-0 left-0 z-10 items-center hidden p-8 cursor-pointer md:flex">
+                                <Button
                                     className="p-2 transition-colors rounded-full bg-white/50 hover:bg-white"
-                                    onClick={prev}
+                                    onPress={prev}
                                 >
-                                    <HiArrowLeft className="text-4xl" />
-                                </button>
+                                    <HiArrowLeft className="text-3xl" />
+                                </Button>
                             </div>
-                            <div
-                                className="absolute inset-y-0 right-0 z-10 items-center hidden p-8 cursor-pointer md:flex"
-                                onClick={next}
-                            >
-                                <button
+                            <div className="absolute inset-y-0 right-0 z-10 items-center hidden p-8 cursor-pointer md:flex">
+                                <Button
                                     className="p-2 transition-colors rounded-full bg-white/50 hover:bg-white"
-                                    onClick={next}
+                                    onPress={next}
                                 >
-                                    <HiArrowRight className="text-4xl" />
-                                </button>
+                                    <HiArrowRight className="text-3xl" />
+                                </Button>
                             </div>
                             <AnimatePresence custom={direction}>
                                 <motion.img
