@@ -13,7 +13,7 @@ import dayjs from "dayjs";
 import dayjsAdvancedFormatPlugin from "dayjs/plugin/advancedFormat";
 import dayjsLocalizedFormatPlugin from "dayjs/plugin/localizedFormat";
 import Image from "next/image";
-import { Cat } from "~/lib/sanity.client";
+import { Cat } from "~/lib/cms/types";
 dayjs.extend(dayjsAdvancedFormatPlugin);
 dayjs.extend(dayjsLocalizedFormatPlugin);
 

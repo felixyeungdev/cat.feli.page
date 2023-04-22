@@ -5,7 +5,8 @@ import React, { FC, Fragment, ReactNode } from "react";
 import PageTitle from "~/components/common/PageTitle";
 import GreyToWhite from "~/components/design/wave/GreyToWhite";
 import WhiteToGrey from "~/components/design/wave/WhiteToGrey";
-import { Cat, Timeline, getAllTimelineEvents } from "~/lib/sanity.client";
+import { getAllTimelineEvents } from "~/lib/cms/queries";
+import { Cat, Timeline } from "~/lib/cms/types";
 
 const Sesame = <Link href="/about/sesame">Sesame</Link>;
 const Shiba = <Link href="/about/shiba">Shiba</Link>;

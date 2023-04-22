@@ -1,7 +1,8 @@
 import { GetStaticProps, NextPage } from "next";
 import PageTitle from "~/components/common/PageTitle";
 import GalleryGridView from "~/components/pages/gallery/galleryGridView/GalleryGridView";
-import { GalleryItem, getAllGalleryItems } from "~/lib/sanity.client";
+import { getAllGalleryItems } from "~/lib/cms/queries";
+import { GalleryItem } from "~/lib/cms/types";
 
 interface Props {
     gallery: GalleryItem[];

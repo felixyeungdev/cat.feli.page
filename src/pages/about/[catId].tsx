@@ -1,6 +1,7 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import CatPage from "~/components/pages/cat/CatPage";
-import { Cat, getAllCats, getCat } from "~/lib/sanity.client";
+import { getAllCats, getCat } from "~/lib/cms/queries";
+import { Cat } from "~/lib/cms/types";
 
 interface Props {
     cat: Cat;

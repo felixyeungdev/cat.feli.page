@@ -4,7 +4,7 @@ import Image from "next/image";
 import React, { FC, useEffect } from "react";
 import { Button } from "react-aria-components";
 import { HiArrowLeft, HiArrowRight, HiX } from "react-icons/hi";
-import { GalleryItem } from "~/lib/sanity.client";
+import { GalleryItem } from "~/lib/cms/client";
 
 const swipeConfidenceThreshold = 10000;
 const swipePower = (offset: number, velocity: number) => {

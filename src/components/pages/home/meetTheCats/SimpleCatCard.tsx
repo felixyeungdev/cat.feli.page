@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FaPaw } from "react-icons/fa";
-import { Cat } from "~/lib/sanity.client";
+import { Cat } from "~/lib/cms/types";
 
 interface Props {
     cat: Pick<Cat, "name" | "avatar" | "slug">;

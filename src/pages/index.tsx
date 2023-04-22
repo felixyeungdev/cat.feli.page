@@ -6,7 +6,8 @@ import WhiteToBlue from "~/components/design/curves/WhiteToBlue";
 import FavouriteToys from "~/components/pages/home/favouriteToys/FavouriteToys";
 import MeetTheCats from "~/components/pages/home/meetTheCats/MeetTheCats";
 import ViewTimeline from "~/components/pages/home/viewTimeline/ViewTimeline";
-import { Cat, getAllCats } from "~/lib/sanity.client";
+import { getAllCats } from "~/lib/cms/queries";
+import { Cat } from "~/lib/cms/types";
 
 interface Props {
     cats: Cat[];

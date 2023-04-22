@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Cat } from "~/lib/sanity.client";
+import { Cat } from "~/lib/cms/types";
 import SimpleCatCard from "./SimpleCatCard";
 
 const MeetTheCats: FC<{
