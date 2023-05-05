@@ -4,7 +4,10 @@ import Footer from "~/components/layout/Footer";
 import "~/styles/global.css";
 
 export const metadata: Metadata = {
-    title: "Cats",
+    title: {
+        default: "Cats",
+        template: "%s | Cats",
+    },
     description: "Felix's Cats",
     colorScheme: "light",
     themeColor: "#4f46e5",

@@ -1,6 +1,21 @@
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import CatPage from "~/components/pages/cat/CatPage";
 import { getAllCats, getCat } from "~/lib/cms/queries";
+
+export const generateMetadata = async ({
+    params,
+}: {
+    params: { catId: string };
+}): Promise<Metadata> => {
+    const cat = await getCat(params.catId);
+    if (!cat) notFound();
+
+    return {
+        title: `About ${cat.name}`,
+        description: `Learn more about ${cat.name}`,
+    };
+};
 
 export const generateStaticParams = async () => {
     const cats = await getAllCats();

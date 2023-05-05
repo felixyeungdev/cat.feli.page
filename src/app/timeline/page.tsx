@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+import { Metadata } from "next";
 import Link from "next/link";
 import React, { FC, Fragment, ReactNode } from "react";
 import PageTitle from "~/components/common/PageTitle";
@@ -6,6 +7,11 @@ import GreyToWhite from "~/components/design/wave/GreyToWhite";
 import WhiteToGrey from "~/components/design/wave/WhiteToGrey";
 import { getAllTimelineEvents } from "~/lib/cms/queries";
 import { Cat } from "~/lib/cms/types";
+
+export const metadata: Metadata = {
+    title: "Timeline",
+    description: "List of events of Felix's cats",
+};
 
 const CatLink: FC<{
     cat: Pick<Cat, "name" | "slug">;

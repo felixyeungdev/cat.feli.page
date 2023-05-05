@@ -1,10 +1,16 @@
 /* eslint-disable @next/next/no-img-element */
+import { Metadata } from "next";
 import { HiOutlineExclamation } from "react-icons/hi";
 import LinkButton from "~/components/common/LinkButton";
 import PageHeadFrag from "~/components/common/PageHeadFrag";
 import Typography from "~/components/common/Typography";
 import PurpleToWhite from "~/components/design/curves/PurpleToWhite";
 import WhiteToBlue from "~/components/design/curves/WhiteToBlue";
+
+export const metadata: Metadata = {
+    title: "Not Found",
+    description: "Page not found",
+};
 
 const NotFound = () => {
     return (

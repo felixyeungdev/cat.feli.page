@@ -1,3 +1,10 @@
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Credits",
+    description: "Browse all the credits for this site",
+};
+
 const FelixYeung = (
     <a href="https://felixyeung.com/" target="_blank" rel="noreferrer">
         Felix Yeung
