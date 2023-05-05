@@ -83,3 +83,5 @@ const WallpaperPage = () => {
 };
 
 export default WallpaperPage;
+
+export const revalidate = 60;

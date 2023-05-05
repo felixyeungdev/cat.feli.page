@@ -21,3 +21,5 @@ const CatAboutPage = async ({ params }: { params: { catId: string } }) => {
 };
 
 export default CatAboutPage;
+
+export const revalidate = 60;

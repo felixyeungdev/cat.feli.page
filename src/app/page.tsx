@@ -23,3 +23,5 @@ const HomePage: NextPage = () => {
 };
 
 export default HomePage;
+
+export const revalidate = 60;

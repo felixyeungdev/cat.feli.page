@@ -142,3 +142,5 @@ const TimelinePage = async () => {
 };
 
 export default TimelinePage;
+
+export const revalidate = 60;
