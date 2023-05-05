@@ -1,13 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
+import { HiOutlineExclamation } from "react-icons/hi";
 import LinkButton from "~/components/common/LinkButton";
 import PageHeadFrag from "~/components/common/PageHeadFrag";
 import Typography from "~/components/common/Typography";
 import PurpleToWhite from "~/components/design/curves/PurpleToWhite";
 import WhiteToBlue from "~/components/design/curves/WhiteToBlue";
 
-import { HiOutlineExclamation } from "react-icons/hi";
-
-const ComingSoonPage = () => {
+const NotFound = () => {
     return (
         <>
             <PageHeadFrag title="Not Found" />
@@ -45,4 +44,4 @@ const ComingSoonPage = () => {
     );
 };
 
-export default ComingSoonPage;
+export default NotFound;

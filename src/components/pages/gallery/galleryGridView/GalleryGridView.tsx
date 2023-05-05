@@ -1,3 +1,5 @@
+"use client";
+
 import { Dialog } from "@headlessui/react";
 import { AnimatePresence, Variants, motion } from "framer-motion";
 import Image from "next/image";
@@ -12,6 +14,8 @@ const swipePower = (offset: number, velocity: number) => {
 };
 
 type Direction = "left" | "right";
+
+const defaultImageDescription = "Image of cat(s)";
 
 const GalleryGridView: FC<{
     gallery: GalleryItem[];
@@ -73,8 +77,10 @@ const GalleryGridView: FC<{
                             >
                                 <Image
                                     src={image.url}
-                                    alt={description}
-                                    title={description}
+                                    alt={description ?? defaultImageDescription}
+                                    title={
+                                        description ?? defaultImageDescription
+                                    }
                                     className="object-cover aspect-square"
                                     loading="lazy"
                                     blurDataURL={image.metadata.lqip}
@@ -144,8 +150,14 @@ const GalleryGridView: FC<{
                                     whileDrag="dragging"
                                     custom={direction}
                                     src={currentImage.image.url}
-                                    alt={currentImage.description}
-                                    title={currentImage.description}
+                                    alt={
+                                        currentImage.description ??
+                                        defaultImageDescription
+                                    }
+                                    title={
+                                        currentImage.description ??
+                                        defaultImageDescription
+                                    }
                                     drag="x"
                                     dragConstraints={{
                                         left: 0,

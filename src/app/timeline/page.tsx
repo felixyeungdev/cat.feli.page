@@ -1,17 +1,11 @@
 import dayjs from "dayjs";
-import { GetStaticProps, NextPage } from "next";
 import Link from "next/link";
 import React, { FC, Fragment, ReactNode } from "react";
 import PageTitle from "~/components/common/PageTitle";
 import GreyToWhite from "~/components/design/wave/GreyToWhite";
 import WhiteToGrey from "~/components/design/wave/WhiteToGrey";
 import { getAllTimelineEvents } from "~/lib/cms/queries";
-import { Cat, Timeline } from "~/lib/cms/types";
-
-const Sesame = <Link href="/about/sesame">Sesame</Link>;
-const Shiba = <Link href="/about/shiba">Shiba</Link>;
-const Simba = <Link href="/about/simba">Simba</Link>;
-const Caramel = <Link href="/about/caramel">Caramel</Link>;
+import { Cat } from "~/lib/cms/types";
 
 const CatLink: FC<{
     cat: Pick<Cat, "name" | "slug">;
@@ -76,11 +70,8 @@ const TimelineEvent: React.FC<{ date: dayjs.Dayjs; title: ReactNode }> = ({
     );
 };
 
-interface Props {
-    timeline: Timeline[];
-}
-
-const TimelinePage: NextPage<Props> = ({ timeline }) => {
+const TimelinePage = async () => {
+    const timeline = await getAllTimelineEvents();
     return (
         <>
             <PageTitle>Timeline</PageTitle>
@@ -148,16 +139,6 @@ const TimelinePage: NextPage<Props> = ({ timeline }) => {
             <GreyToWhite />
         </>
     );
-};
-
-export const getStaticProps: GetStaticProps<Props> = async () => {
-    const timeline = await getAllTimelineEvents();
-
-    return {
-        props: {
-            timeline,
-        },
-    };
 };
 
 export default TimelinePage;

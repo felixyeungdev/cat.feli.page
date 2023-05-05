@@ -1,3 +1,5 @@
+"use client";
+
 /* eslint-disable @next/next/no-img-element */
 import html2canvas from "html2canvas";
 import { useRef } from "react";
@@ -6,11 +8,11 @@ import collage from "src/data/collage";
 import ActionButton from "~/components/common/ActionButton";
 
 const WallpaperPage = () => {
-    const wallpaperRef = useRef<HTMLDivElement>();
+    const wallpaperRef = useRef<HTMLDivElement>(null);
 
     const downloadWallpaper = async () => {
         try {
-            const canvas = await html2canvas(wallpaperRef.current);
+            const canvas = await html2canvas(wallpaperRef.current!);
             const image = canvas.toDataURL();
             const anchor = document.createElement("a");
             document.body.append(anchor);
