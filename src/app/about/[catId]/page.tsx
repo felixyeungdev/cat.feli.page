@@ -19,9 +19,7 @@ export const generateMetadata = async ({
 
 export const generateStaticParams = async () => {
     const cats = await getAllCats();
-
-    return [];
-    // return cats.map((cat) => ({ catId: cat.slug }));
+    return cats.map((cat) => ({ catId: cat.slug }));
 };
 
 const CatAboutPage = async ({ params }: { params: { catId: string } }) => {
