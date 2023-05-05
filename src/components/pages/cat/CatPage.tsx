@@ -68,7 +68,7 @@ const CatPage: NextPage<{ cat: Cat }> = ({ cat }) => {
                 Icon={FaBirthdayCake}
                 label="Birthday"
                 value={dayjs(dateOfBirth).format("LL")}
-                hint={!dateOfDeath && formatAge(dateOfBirth)}
+                hint={!dateOfDeath ? formatAge(dateOfBirth) : undefined}
             />
             {dateOfDeath && (
                 <DataTile
