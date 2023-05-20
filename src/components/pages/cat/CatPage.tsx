@@ -13,7 +13,16 @@ import dayjs from "dayjs";
 import dayjsAdvancedFormatPlugin from "dayjs/plugin/advancedFormat";
 import dayjsLocalizedFormatPlugin from "dayjs/plugin/localizedFormat";
 import Image from "next/image";
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "~/components/ui/dialog";
 import { Cat } from "~/lib/cms/types";
+import WeightChart from "./WeightChart";
 dayjs.extend(dayjsAdvancedFormatPlugin);
 dayjs.extend(dayjsLocalizedFormatPlugin);
 
@@ -81,14 +90,26 @@ const CatPage: NextPage<{ cat: Cat }> = ({ cat }) => {
                     )} years old`}
                 />
             )}
-            <DataTile
-                Icon={HiOutlineScale}
-                label="Weight"
-                value={`${latestWeight.value.toFixed(2)}kg`}
-                hint={`${latestWeightDate.format(
-                    "LL"
-                )} (${latestWeightDate.format()})`}
-            />
+            <Dialog>
+                <DialogTrigger>
+                    <DataTile
+                        Icon={HiOutlineScale}
+                        label="Weight"
+                        value={`${latestWeight.value.toFixed(2)}kg`}
+                        hint={`${latestWeightDate.format(
+                            "LL"
+                        )} (${latestWeightDate.format()})`}
+                    />
+                </DialogTrigger>
+                <DialogContent>
+                    <DialogHeader>
+                        <DialogTitle>{`${cat.name}'s weight history`}</DialogTitle>
+                        <DialogDescription>
+                            <WeightChart measurements={cat.measurements} />
+                        </DialogDescription>
+                    </DialogHeader>
+                </DialogContent>
+            </Dialog>
         </div>
     );
 

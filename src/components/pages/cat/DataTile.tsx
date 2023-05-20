@@ -10,7 +10,7 @@ interface Props {
 const DataTile: React.FC<Props> = ({ Icon, label, value, hint }) => {
     return (
         <div
-            className="flex items-center px-4 py-3 space-x-3 bg-white rounded-lg shadow-md"
+            className="flex items-center px-4 py-3 space-x-3 bg-white rounded-lg shadow-md text-start"
             {...(hint ? { title: hint } : {})}
         >
             <div className="p-2 rounded-full bg-gradient-to-r from-blue-600 to-purple-600">

@@ -33,6 +33,14 @@ export const imageAssetSchema = z.object({
     }),
 });
 
+export const measurementSchema = z.object({
+    _key: z.string(),
+    value: z.number(),
+    date: z.string(),
+});
+
+export type Measurement = z.infer<typeof measurementSchema>;
+
 export const catSchema = z.object({
     name: z.string(),
     slug: z.string(),
@@ -46,13 +54,7 @@ export const catSchema = z.object({
     gender: z.string(),
     adopted: z.boolean(),
     biography: z.any(),
-    measurements: z.array(
-        z.object({
-            _key: z.string(),
-            value: z.number(),
-            date: z.string(),
-        })
-    ),
+    measurements: z.array(measurementSchema),
     dateOfBirth: z.string(),
     dateOfDeath: z.string().nullable(),
     showInMeetTheCats: z.boolean(),
