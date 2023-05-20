@@ -25,15 +25,8 @@ const WeightChart: FC<{
                 responsive: true,
                 normalized: true,
                 scales: {
-                    x: {
-                        type: "time",
-                        adapters: {
-                            date: dayjs,
-                        },
-                    },
-                    y: {
-                        beginAtZero: true,
-                    },
+                    x: { type: "time", adapters: { date: dayjs } },
+                    y: { beginAtZero: true },
                 },
             }}
             data={{
