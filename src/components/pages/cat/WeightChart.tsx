@@ -31,6 +31,9 @@ const WeightChart: FC<{
                             date: dayjs,
                         },
                     },
+                    y: {
+                        beginAtZero: true,
+                    },
                 },
             }}
             data={{
