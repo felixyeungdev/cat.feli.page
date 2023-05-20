@@ -22,6 +22,7 @@
         "@sanity/vision": "^3.11.1",
         "@t3-oss/env-nextjs": "^0.3.1",
         "@tailwindcss/typography": "^0.5.9",
+        "change-case": "^4.1.2",
         "dayjs": "^1.11.7",
         "framer-motion": "^10.12.12",
         "html2canvas": "^1.4.1",

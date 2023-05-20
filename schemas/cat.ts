@@ -1,4 +1,6 @@
 import { defineField, defineType } from "sanity";
+import { catBreeds } from "./data/breeds";
+import { capitalCase } from "change-case";
 
 const cat = defineType({
     name: "cat",
@@ -38,6 +40,24 @@ const cat = defineType({
             options: {
                 list: ["male", "female"],
             },
+        }),
+        defineField({
+            name: "breed",
+            title: "Breed",
+            type: "array",
+            validation: (rule) => rule.required(),
+            of: [
+                {
+                    type: "string",
+                    validation: (rule) => rule.required(),
+                    options: {
+                        list: [...catBreeds].map((value) => ({
+                            title: capitalCase(value),
+                            value,
+                        })),
+                    },
+                },
+            ],
         }),
         defineField({
             name: "adopted",
