@@ -23,9 +23,12 @@
         "@t3-oss/env-nextjs": "^0.3.1",
         "@tailwindcss/typography": "^0.5.9",
         "change-case": "^4.1.2",
+        "class-variance-authority": "^0.6.0",
+        "clsx": "^1.2.1",
         "dayjs": "^1.11.7",
         "framer-motion": "^10.12.12",
         "html2canvas": "^1.4.1",
+        "lucide-react": "^0.220.0",
         "next": "^13.4.2",
         "next-sanity": "^4.3.2",
         "react": "^18.2.0",
@@ -35,6 +38,8 @@
         "react-use": "^17.4.0",
         "sanity": "^3.11.1",
         "styled-components": "^5.3",
+        "tailwind-merge": "^1.12.0",
+        "tailwindcss-animate": "^1.0.5",
         "zod": "^3.21.4"
     },
     "devDependencies": {
