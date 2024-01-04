@@ -1,11 +1,10 @@
-/** @type {import('tailwindcss').Config} */
-
 const defaultTheme = require("tailwindcss/defaultTheme");
 
+/** @type {import('tailwindcss').Config} */
 module.exports = {
     darkMode: ["class"],
-
-    content: ["./src/**/*.{js,ts,jsx,tsx}"],
+    content: ["./src/**/*.{ts,tsx}"],
+    prefix: "",
     theme: {
         container: {
             center: true,
@@ -57,12 +56,12 @@ module.exports = {
             },
             keyframes: {
                 "accordion-down": {
-                    from: { height: 0 },
+                    from: { height: "0" },
                     to: { height: "var(--radix-accordion-content-height)" },
                 },
                 "accordion-up": {
                     from: { height: "var(--radix-accordion-content-height)" },
-                    to: { height: 0 },
+                    to: { height: "0" },
                 },
             },
             animation: {
@@ -74,9 +73,6 @@ module.exports = {
                 display: ["Lexend", ...defaultTheme.fontFamily.sans],
             },
         },
-    },
-    variants: {
-        extend: {},
     },
     plugins: [
         require("@tailwindcss/typography"),

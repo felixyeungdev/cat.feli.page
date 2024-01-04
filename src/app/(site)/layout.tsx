@@ -10,7 +10,6 @@ export const metadata: Metadata = {
     },
     description: "Felix's Cats",
     colorScheme: "light",
-    themeColor: "#4f46e5",
     manifest: "/manifest.json",
     icons: { icon: "/assets/icons/cat.png" },
 };
