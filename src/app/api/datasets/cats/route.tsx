@@ -19,6 +19,7 @@ export const GET = async (request: Request) => {
             return {
                 objectID: cat.slug,
                 id: cat.slug,
+                name: cat.name,
                 avatar_url: cat.avatar.url,
                 favourite_toys: cat.favouriteToys.map((toy) => toy.name),
                 gender: cat.gender,
