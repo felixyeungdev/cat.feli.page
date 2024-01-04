@@ -9,7 +9,6 @@ export const metadata: Metadata = {
         template: "%s | Cats",
     },
     description: "Felix's Cats",
-    colorScheme: "light",
     manifest: "/manifest.json",
     icons: { icon: "/assets/icons/cat.png" },
 };
