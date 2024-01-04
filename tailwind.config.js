@@ -69,8 +69,14 @@ module.exports = {
                 "accordion-up": "accordion-up 0.2s ease-out",
             },
             fontFamily: {
-                sans: ["Inter", ...defaultTheme.fontFamily.sans],
-                display: ["Lexend", ...defaultTheme.fontFamily.sans],
+                sans: [
+                    "var(--font-geist-sans)",
+                    ...defaultTheme.fontFamily.sans,
+                ],
+                display: [
+                    "var(--font-lexend)",
+                    ...defaultTheme.fontFamily.sans,
+                ],
             },
         },
     },

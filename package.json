@@ -30,6 +30,7 @@
         "clsx": "^2.1.0",
         "dayjs": "^1.11.10",
         "framer-motion": "^10.17.4",
+        "geist": "^1.2.0",
         "html2canvas": "^1.4.1",
         "lucide-react": "^0.303.0",
         "next": "^14.0.4",
