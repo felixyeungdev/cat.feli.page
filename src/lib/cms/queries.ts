@@ -8,7 +8,7 @@ export const getAllCats = async () => {
         groq`*[_type == "cat"]{
           ${catFields}
         }
-        `
+        `,
     );
 
     return catsSchema.parse(data);
@@ -20,7 +20,7 @@ export const getCat = async (slug: string) => {
           ${catFields}
         }
         `,
-        { slug }
+        { slug },
     );
 
     return catSchema.parse(data);
@@ -31,7 +31,7 @@ export const getAllTimelineEvents = async () => {
         groq`*[_type == "timeline"] | order(date desc){
           ${timelineFields}
         }
-        `
+        `,
     );
 
     return timelineSchema.parse(data);
@@ -42,7 +42,7 @@ export const getAllGalleryItems = async () => {
         groq`*[_type == "gallery"] | order(date desc){
           ${galleryItemFields}
         }
-        `
+        `,
     );
 
     return gallerySchema.parse(data);

@@ -12,7 +12,6 @@ const HomePage: NextPage = () => {
         <>
             <PageTitle>Welcome</PageTitle>
             <WhiteToBlue />
-            {/* @ts-expect-error Async Server Component */}
             <MeetTheCats />
             <PurpleToBlue />
             <ViewTimeline />
