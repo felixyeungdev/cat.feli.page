@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getAllCats } from "~/lib/cms/queries";
+import { CatsDatasetItem } from "./schema";
 
 // modified from https://www.sanity.io/schemas/portable-text-to-plain-text-cc845843
 function blocksToText(blocks: any) {
@@ -27,7 +28,7 @@ export const GET = async (request: Request) => {
                 biography: blocksToText(cat.biography),
                 date_of_birth: cat.dateOfBirth,
                 date_of_death: cat.dateOfDeath,
-            };
+            } satisfies CatsDatasetItem;
         }),
     );
 };

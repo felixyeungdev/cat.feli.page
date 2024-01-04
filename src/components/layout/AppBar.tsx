@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { IconType } from "react-icons/lib";
 import SiteIcon from "./Icon";
+import { Search } from "./Search";
 
 const AppBarNavLink: React.FC<{
     Icon?: IconType;
@@ -18,8 +19,8 @@ const AppBarNavLink: React.FC<{
 const AppBar: React.FC = () => {
     return (
         <nav className="bg-opacity-60 min-h-[4rem] sticky top-0 backdrop-filter backdrop-blur bg-white z-50 ring-2 ring-gray-200 ring-opacity-90 flex justify-center">
-            <div className="max-w-[80rem] md:mx-8 mx-6 flex justify-between w-full">
-                <div>
+            <div className="max-w-[80rem] md:mx-8 mx-6 flex gap-6 justify-between w-full">
+                <div className="grow">
                     <Link
                         href="/"
                         className="flex items-center space-x-3 min-h-[4rem] text-indigo-600"
@@ -33,6 +34,7 @@ const AppBar: React.FC = () => {
                 <div className="flex items-center space-x-2 font-medium">
                     <AppBarNavLink href="/gallery">Gallery</AppBarNavLink>
                 </div>
+                <Search />
             </div>
         </nav>
     );

@@ -13,6 +13,9 @@ export const env = createEnv({
         NEXT_PUBLIC_SANITY_DATASET: z.string().min(1),
         NEXT_PUBLIC_SANITY_API_VERSION: z.string().min(1),
         NEXT_PUBLIC_SANITY_PROJECT_TITLE: z.string().min(1),
+        NEXT_PUBLIC_ALGOLIA_APP_ID: z.string(),
+        NEXT_PUBLIC_ALGOLIA_SEARCH_KEY: z.string(),
+        NEXT_PUBLIC_ALGOLIA_INDEX_NAME: z.string(),
     },
     runtimeEnv: {
         SANITY_API_READ_TOKEN: process.env.SANITY_API_READ_TOKEN,
@@ -24,5 +27,10 @@ export const env = createEnv({
             process.env.NEXT_PUBLIC_SANITY_API_VERSION,
         NEXT_PUBLIC_SANITY_PROJECT_TITLE:
             process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE,
+        NEXT_PUBLIC_ALGOLIA_APP_ID: process.env.NEXT_PUBLIC_ALGOLIA_APP_ID,
+        NEXT_PUBLIC_ALGOLIA_SEARCH_KEY:
+            process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_KEY,
+        NEXT_PUBLIC_ALGOLIA_INDEX_NAME:
+            process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME,
     },
 });
